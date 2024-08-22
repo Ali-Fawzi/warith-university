@@ -136,7 +136,7 @@ export function PageLayout({children}: {children: ReactNode}) {
                         <img alt='' className="h-[63.7px] w-[118.3px]" src={LogoPng}/>
                     </div>
                     <div className='flex flex-col items-center justify-center text-3xl'>
-                        <p className='border-brand border-b pb-4 font-light'>مركز وارث للريادة والابتكار والتطوير</p>
+                        <p className='border-brand border-b pb-4 font-light text-right'>مركز وارث للريادة والابتكار والتطوير</p>
                         <p className='font-bold'>
                             <span>اطلق </span>
                             <span className='text-brand'>قدراتك </span>
@@ -277,10 +277,10 @@ function Footer({children}: { children: ReactNode }) {
                         {children}
                     </div>
                 </div>
-                <div className="mt-16 border-t border-brand">
+                <div className="mt-16 border-t border-brand p-2">
                     <div
                         className='mx-4 xl:mx-16 flex flex-col items-center justify-center space-y-4 xl:flex-row-reverse xl:justify-between'>
-                        <p className="leading-5 text-white md:order-1 md:mt-0">
+                        <p className="leading-5 text-white md:order-1 md:mt-0 text-right">
                             العنوان: العراق - كربلاء المقدسة / طريق بغداد - كربلاء (عمود 119)
                         </p>
                         <div className="flex space-x-6 md:order-2">

@@ -11,7 +11,7 @@ export function WarithElevateSection() {
         <div className='flex flex-col xl:flex-row items-end xl:items-center justify-center gap-24 p-4'>
             <div className='flex flex-col items-end justify-center gap-4'>
                 <p className='font-semibold'>سجل الان</p>
-                <p className='text-3xl font-bold'>Warith Elevate انضم الى مجتمع</p>
+                <p className=' text-2xl xl:text-3xl font-bold'>Warith Elevate انضم الى مجتمع</p>
                 <div className='mr-56 -mt-2'>
                     <MarkerIcon />
                 </div>
