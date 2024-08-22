@@ -1,7 +1,7 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Navigation} from "swiper/modules";
-import LogoPng from "~/asstes/Logo.png";
-import Logo2 from "~/asstes/Logo2.png";
+import LogoPng from "~/asstes/images/Logo.png";
+import Logo2 from "~/asstes/images/Logo2.png";
 import {Button} from "~/components/ui/Button";
 import 'swiper/css';
 import 'swiper/css/navigation';

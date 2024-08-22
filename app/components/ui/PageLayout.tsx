@@ -1,10 +1,10 @@
 import {ReactNode, SVGProps} from "react";
 import {Link, NavLink} from "@remix-run/react";
 import {Drawer, useDrawer} from "~/components/ui/Drawer";
-import MenuIcon from "../../asstes/Menu.svg"
-import Logo from "../../asstes/Logo.svg"
-import Logo2 from "../../asstes/Logo2.png"
-import LogoPng from "../../asstes/Logo.png"
+import MenuIcon from "../../asstes/icons/Menu.svg"
+import Logo from "../../asstes/icons/Logo.svg"
+import Logo2 from "../../asstes/images/Logo2.png"
+import LogoPng from "../../asstes/images/Logo.png"
 import {Button} from "~/components/ui/Button";
 import {JSX} from "react/jsx-runtime";
 
@@ -241,7 +241,7 @@ function Header({children}: { children: ReactNode }) {
 
 function Footer({children}: { children: ReactNode }) {
     return (
-        <footer aria-labelledby="footer-heading" className="bg-dark">
+        <footer aria-labelledby="footer-heading" className="bg-dark font-almarai">
             <h2 id="footer-heading" className="sr-only">
                 Footer
             </h2>

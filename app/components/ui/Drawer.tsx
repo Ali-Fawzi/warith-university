@@ -4,7 +4,7 @@ import {
     DialogPanel,
     DialogBackdrop,
 } from '@headlessui/react';
-import CloseIcon from "../../asstes/Close.svg"
+import CloseIcon from "../../asstes/icons/Close.svg"
 /**
  * Drawer component that opens on user click.
  * @param heading - string. Shown at the top of the drawer.

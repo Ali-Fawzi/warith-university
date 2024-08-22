@@ -4,11 +4,12 @@ import {SponserSection} from "~/components/SponserSection";
 import {useLoaderData} from "@remix-run/react";
 import {WarithElevateSection} from "~/components/WarithElevateSection";
 import {InstructorsSection} from "~/components/InstructorsSection";
+import {NewsSection} from "~/components/NewsSection";
 
 export const meta: MetaFunction = () => {
   return [
     { title: "جامعة وارث الانبياء" },
-    { name: "description", content: "Welcome to Remix!" },
+    { name: "الوصف", content: "اهلا بكم في جامعة وارث الانبياء في كربلاء المقدسة" },
   ];
 };
 export const loader = async () => {
@@ -24,8 +25,7 @@ export const loader = async () => {
 };
 
 export default function Index() {
-    const {sponsors, slides, posts} = useLoaderData<typeof loader>()
-    console.log(posts)
+    const {sponsors, slides, posts: news} = useLoaderData<typeof loader>()
     return (
         <>
             <section className='relative isolate overflow-hidden'>
@@ -47,7 +47,7 @@ export default function Index() {
                 <InstructorsSection />
             </section>
             <section>
-
+                <NewsSection news={news} />
             </section>
         </>
     );
