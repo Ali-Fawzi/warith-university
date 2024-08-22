@@ -12,7 +12,7 @@ export function NewsSection(news: itemNews[]) {
                         <div key={item.id} className='relative'>
                             <NewsCard  item={item} />
                             {i === 0 ?
-                                <div className='absolute -right-4 xl:-right-6 top-1/2'>
+                                <div className='hidden xl:block absolute -right-4 xl:-right-6 top-1/2'>
                                  <Vector/>
                                 </div>
                             : ''}

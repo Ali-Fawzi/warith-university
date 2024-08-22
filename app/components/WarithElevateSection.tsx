@@ -9,17 +9,17 @@ import NetworkIcon from '../asstes/icons/Network.svg'
 export function WarithElevateSection() {
     return (
         <div className='flex flex-col xl:flex-row items-end xl:items-center justify-center gap-24 p-4'>
-            <div className='flex flex-col items-end justify-center gap-4 mx-auto'>
-                <p className='font-semibold'>سجل الان</p>
-                <p className=' text-2xl xl:text-3xl font-bold'>Warith Elevate انضم الى مجتمع</p>
-                <div className='mr-56 -mt-2'>
+            <div className='flex flex-col items-center justify-center gap-4 sm:mx-auto'>
+                <p className='font-semibold ml-auto'>سجل الان</p>
+                <p className=' text-2xl xl:text-3xl font-bold ml-auto'>Warith Elevate انضم الى مجتمع</p>
+                <div className='mr-20 -mt-2'>
                     <MarkerIcon />
                 </div>
-                <div className='font-light max-w-xs xl:max-w-lg text-right'>
+                <div className='font-light max-w-xs xl:max-w-lg text-right ml-auto'>
                     <p>انضم الينا في رحلة الاكتشاف والتعلم والابتكار، كن جزءا من مجتمع يحتفي بالتطوير، ويتقبل التحديات،
                         ويحول الافكار الى مشاريع ذات تأثير.</p>
                 </div>
-                <div className='flex flex-row-reverse items-center justify-center'>
+                <div className='flex flex-row-reverse items-center justify-center ml-auto'>
                     <div className='flex flex-col items-end justify-center gap-4'>
                         <div className='flex flex-row items-center justify-center gap-8'>
                             <p className='font-semibold'>توفير حاضنات الاعمال</p>
