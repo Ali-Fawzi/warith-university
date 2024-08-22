@@ -1,48 +1,54 @@
-import type { MetaFunction } from "@remix-run/node";
+import {MetaFunction} from "@remix-run/node";
+import {HeroSlider} from "~/components/HeroSlider";
+import {SponserSection} from "~/components/SponserSection";
+import {useLoaderData} from "@remix-run/react";
+import {WarithElevateSection} from "~/components/WarithElevateSection";
+import {InstructorsSection} from "~/components/InstructorsSection";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
+    { title: "جامعة وارث الانبياء" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
+export const loader = async () => {
+    const sponsors = await fetch(import.meta.env.VITE_API_ENDPOINT + "/sponsers");
+    const slides = await fetch(import.meta.env.VITE_API_ENDPOINT + "/slides");
+    const posts = await fetch(import.meta.env.VITE_API_ENDPOINT + "/posts");
+
+    return {
+        sponsors: await sponsors.json(),
+        slides: await slides.json(),
+        posts: await posts.json()
+    };
+};
 
 export default function Index() {
-  return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+    const {sponsors, slides, posts} = useLoaderData<typeof loader>()
+    console.log(posts)
+    return (
+        <>
+            <section className='relative isolate overflow-hidden'>
+                <HeroSlider slides={slides} />
+            </section>
+            <section className='relative -mt-10'>
+                <SponserSection sponsors={sponsors} />
+            </section>
+            <section className='p-4 text-center'>
+                الدورات التدريبية
+            </section>
+            <section>
+                <WarithElevateSection />
+            </section>
+            <section className='p-4 text-center'>
+                الورش التدريبية
+            </section>
+            <section>
+                <InstructorsSection />
+            </section>
+            <section>
+
+            </section>
+        </>
+    );
 }
