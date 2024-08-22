@@ -137,7 +137,7 @@ export function PageLayout({children}: {children: ReactNode}) {
                     </div>
                     <div className='flex flex-col items-center justify-center text-3xl'>
                         <p className='border-brand border-b pb-4 font-light text-right'>مركز وارث للريادة والابتكار والتطوير</p>
-                        <p className='font-bold'>
+                        <p className='font-bold text-right'>
                             <span>اطلق </span>
                             <span className='text-brand'>قدراتك </span>
                             <span>وابتكر </span>

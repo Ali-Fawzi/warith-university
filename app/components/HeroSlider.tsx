@@ -55,7 +55,10 @@ export function HeroSlider(slides: slide[]) {
                                 </div>
                             </div>
                             <Link to={slide.href} >
-                                <Button variant='secondary'>انضم الان</Button>
+                                <Button
+                                    baseButtonClasses='inline-block rounded-sm font-semibold text-center py-3 px-6'
+                                    variant='secondary'
+                                >انضم الان</Button>
                             </Link>
                         </div>
                     </div>

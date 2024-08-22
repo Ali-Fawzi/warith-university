@@ -15,7 +15,10 @@ export function WarithElevateSection() {
                 <div className='mr-56 -mt-2'>
                     <MarkerIcon />
                 </div>
-                <p className='font-light max-w-lg text-right text-sm xl:text-base'>انضم الينا في رحلة الاكتشاف والتعلم والابتكار، كن جزءا من مجتمع يحتفي بالتطوير، ويتقبل التحديات، ويحول الافكار الى مشاريع ذات تأثير.</p>
+                <div className='font-light max-w-xs xl:max-w-lg text-right'>
+                    <p>انضم الينا في رحلة الاكتشاف والتعلم والابتكار، كن جزءا من مجتمع يحتفي بالتطوير، ويتقبل التحديات،
+                        ويحول الافكار الى مشاريع ذات تأثير.</p>
+                </div>
                 <div className='flex flex-row-reverse items-center justify-center'>
                     <div className='flex flex-col items-end justify-center gap-4'>
                         <div className='flex flex-row items-center justify-center gap-8'>
