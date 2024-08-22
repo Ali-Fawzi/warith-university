@@ -10,7 +10,7 @@ export function VideosSection() {
                         title='استعدادات الجامعة للعام الدراسي القادم'
                         className='w-[380px] h-[253px] xl:w-[654px] xl:h-[370px]'
                         src="https://www.youtube.com/embed/ShuGg7PzdGI"
-                    ></iframe>
+                    />
                     <div className='flex flex-row justify-end gap-2 mt-2'>
                         <p className='-mt-1'>استعدادات الجامعة للعام الدراسي القادم</p>
                         <VectorIcon/>
@@ -21,7 +21,7 @@ export function VideosSection() {
                         title='rick roll'
                         className='w-[380px] h-[253px] xl:w-[654px] xl:h-[370px]'
                         src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    ></iframe>
+                    />
                     <div className='flex flex-row justify-end gap-2 mt-2'>
                         <p className='-mt-1'>rick roll</p>
                         <VectorIcon/>

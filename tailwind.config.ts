@@ -11,7 +11,8 @@ export default {
         dark: '#15313F',
         navy: '#213469',
         gray: '#8C8C8C',
-        cyan: '#5FAEC4'
+        cyan: '#5FAEC4',
+        formInput: '#F2F7FF',
       },
       fontFamily: {
         almarai: ['Almarai', 'sans-serif'],
