@@ -12,21 +12,21 @@ export function VisionSection() {
                     <EyeIcon />
                 </div>
             </div>
-            <p className='font-light text-sm'>تعزيز القدرات لخلق الفرص</p>
+            <p className='font-light'>تعزيز القدرات لخلق الفرص</p>
             <div className='flex flex-row gap-2 items-end justify-end font-bold'>
                 <p>رسالتنا</p>
                 <div className='p-1 bg-brand'>
                     <MessageIcon />
                 </div>
             </div>
-            <p className='font-light text-sm'>التمكين المهني لطلبة وخريجي الجامعة ليأخذوا دورهم الحقيقي في المجتمع</p>
+            <p className='font-light'>التمكين المهني لطلبة وخريجي الجامعة ليأخذوا دورهم الحقيقي في المجتمع</p>
             <div className='flex flex-row gap-2 items-end justify-end font-bold'>
                 <p>مهمتنا</p>
                 <div className='p-1 bg-brand'>
                     <MissionIcon />
                 </div>
             </div>
-            <ul dir='rtl' className='font-light text-sm text-right list-disc mr-3'>
+            <ul dir='rtl' className='font-light text-right list-disc mr-3'>
                 <li>بناء القدرات وتعزيز التدريب وتحفيز التعلم الذاتي لضمان التحسين المستمر</li>
                 <li>تعزيز الاخلاقيات والممارسات المهنية بما ينسجم مع منظومة الاخلاقية</li>
                 <li>التفكير الريادي في الاعمال لتحويل الافكار الى مشاريع نافعة في المجتمع</li>

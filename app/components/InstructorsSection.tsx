@@ -19,9 +19,9 @@ export function InstructorsSection () {
             <div className='flex flex-col items-center justify-start xl:justify-around xl:flex-row gap-8 grow'>
                 <div className='flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-4 shadow-lg rounded-lg p-3 bg-white'>
                     <div className='flex flex-col items-end gap-4 xl:max-w-80'>
-                        <p className='font-bold'>احمد علي كاظم</p>
-                        <p className='font-light text-sm'>مهندس برمجيات</p>
-                        <p className='font-light text-sm text-right'>انضم الينا في رحلة الاكتشاف والتعلم والابتكار، كن جزءا من مجتمع يحتفي بالتطوير، ويتقبل التحديات، ويحول الافكار الى مشاريع ذات تأثير.</p>
+                        <p className='font-bold text-lg'>احمد علي كاظم</p>
+                        <p className='font-light'>مهندس برمجيات</p>
+                        <p className='font-light text-right'>انضم الينا في رحلة الاكتشاف والتعلم والابتكار، كن جزءا من مجتمع يحتفي بالتطوير، ويتقبل التحديات، ويحول الافكار الى مشاريع ذات تأثير.</p>
                         <div className='flex flex-row gap-2 items-start justify-start w-full'>
                             <Link to={''}>
                                 <PlanetIcon />
