@@ -23,23 +23,19 @@ const headerMenu: MenuItem[] = [
     },
     {
         title: "الدورات التدريبية",
-        link: "/t"
+        link: "/workshops"
     },
     {
         title: "الورش",
-        link: "/t"
+        link: "/courses"
     },
     {
-        title: "المشاريع",
-        link: "/t"
-    },
-    {
-        title: "المقالات",
-        link: "/t"
+        title: "الاخبار",
+        link: "/news"
     },
     {
         title: "تواصل معنا",
-        link: "/t"
+        link: "/contact-us"
     }
 ]
 const footerNavigation = {
