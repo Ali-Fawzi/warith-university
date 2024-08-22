@@ -15,36 +15,40 @@ export function WarithElevateSection() {
                 <div className='mr-56 -mt-2'>
                     <MarkerIcon />
                 </div>
-                <p className='font-light max-w-lg text-right'>انضم الينا في رحلة الاكتشاف والتعلم والابتكار، كن جزءا من مجتمع يحتفي بالتطوير، ويتقبل التحديات، ويحول الافكار الى مشاريع ذات تأثير.</p>
-                <div className='flex flex-row items-center justify-center gap-8'>
-                    <p className='font-semibold'>توفير حاضنات الاعمال</p>
-                    <div className='p-3 rounded-full bg-cyan'>
-                        <BuildingIcon />
+                <p className='font-light max-w-lg text-right text-sm xl:text-base'>انضم الينا في رحلة الاكتشاف والتعلم والابتكار، كن جزءا من مجتمع يحتفي بالتطوير، ويتقبل التحديات، ويحول الافكار الى مشاريع ذات تأثير.</p>
+                <div className='flex flex-row-reverse items-center justify-center'>
+                    <div className='flex flex-col items-end justify-center gap-4'>
+                        <div className='flex flex-row items-center justify-center gap-8'>
+                            <p className='font-semibold'>توفير حاضنات الاعمال</p>
+                            <div className='p-3 rounded-full bg-cyan'>
+                                <BuildingIcon/>
+                            </div>
+                        </div>
+                        <div className='flex flex-row items-center justify-center gap-8'>
+                            <p className='font-semibold'>شبكات التواصل الفعال</p>
+                            <div className='p-3 rounded-full bg-cyan'>
+                                <NetworkIcon/>
+                            </div>
+                        </div>
+                        <div className='flex flex-row items-center justify-center gap-8'>
+                            <p className='font-semibold'>ورش العمل والدورات التدريبية</p>
+                            <div className='p-3 rounded-full bg-cyan'>
+                                <OnlineVideosIcon/>
+                            </div>
+                        </div>
+                        <Link to={'#'} className='mt-8 w-72'>
+                            <Button
+                                baseButtonClasses='inline-block rounded-md font-semibold text-center py-3 px-6'
+                                width='full'
+                            >
+                                Warith Elevate انضم الان الى
+                            </Button>
+                        </Link>
+                    </div>
+                    <div>
+                        <ArrowIcon/>
                     </div>
                 </div>
-                <div className='flex flex-row items-center justify-center gap-8'>
-                    <p className='font-semibold'>شبكات التواصل الفعال</p>
-                    <div className='p-3 rounded-full bg-cyan'>
-                        <NetworkIcon />
-                    </div>
-                </div>
-                <div className='flex flex-row items-center justify-center gap-8'>
-                    <p className='font-semibold'>ورش العمل والدورات التدريبية</p>
-                    <div className='p-3 rounded-full bg-cyan'>
-                        <OnlineVideosIcon />
-                    </div>
-                    <div className='absolute left-1/2 xl:left-80'>
-                        <ArrowIcon />
-                    </div>
-                </div>
-                <Link to={'#'} className='mt-8 w-72'>
-                    <Button
-                        baseButtonClasses='inline-block rounded-md font-semibold text-center py-3 px-6'
-                        width='full'
-                    >
-                        Warith Elevate انضم الان الى
-                    </Button>
-                </Link>
             </div>
             <div className='relative p-4 mt-8'>
                 <div className='w-80 h-80 bg-brand rounded-xl'/>
