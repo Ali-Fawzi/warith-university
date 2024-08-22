@@ -14,10 +14,10 @@ type instructor = {
 }
 export function InstructorsSection () {
     return (
-        <div className='bg-white flex flex-col justify-center items-center gap-4 p-4'>
+        <div className='flex flex-col justify-center items-center gap-4 p-4'>
             <p className='text-center text-2xl max-w-sm mx-auto font-bold'>Warith Elevate تعرف على مدربين </p>
             <div className='flex flex-col items-center justify-start xl:justify-around xl:flex-row gap-8 grow'>
-                <div className='flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-4 shadow-lg rounded-lg p-3'>
+                <div className='flex flex-col xl:flex-row items-center justify-center gap-8 xl:gap-4 shadow-lg rounded-lg p-3 bg-white'>
                     <div className='flex flex-col items-end gap-4 xl:max-w-80'>
                         <p className='font-bold'>احمد علي كاظم</p>
                         <p className='font-light text-sm'>مهندس برمجيات</p>

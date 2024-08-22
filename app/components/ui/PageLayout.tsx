@@ -19,7 +19,7 @@ const headerMenu: MenuItem[] = [
     },
     {
         title: "من نحن",
-        link: "/t"
+        link: "/about"
     },
     {
         title: "الدورات التدريبية",

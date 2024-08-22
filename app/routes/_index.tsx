@@ -5,6 +5,7 @@ import {useLoaderData} from "@remix-run/react";
 import {WarithElevateSection} from "~/components/WarithElevateSection";
 import {InstructorsSection} from "~/components/InstructorsSection";
 import {NewsSection} from "~/components/NewsSection";
+import {VideosSection} from "~/components/VideosSection";
 
 export const meta: MetaFunction = () => {
   return [
@@ -31,23 +32,26 @@ export default function Index() {
             <section className='relative isolate overflow-hidden'>
                 <HeroSlider slides={slides} />
             </section>
-            <section className='relative -mt-10'>
+            <section className='relative -mt-10 mx-8 xl:mx-16'>
                 <SponserSection sponsors={sponsors} />
             </section>
             <section className='p-4 text-center'>
                 الدورات التدريبية
             </section>
-            <section>
+            <section className='mt-8 bg-white'>
                 <WarithElevateSection />
             </section>
-            <section className='p-4 text-center'>
+            <section className='p-4 text-center '>
                 الورش التدريبية
             </section>
-            <section>
+            <section className='mt-8 bg-white'>
                 <InstructorsSection />
             </section>
-            <section>
+            <section className='mt-8'>
                 <NewsSection news={news} />
+            </section>
+            <section className='mt-8'>
+                <VideosSection />
             </section>
         </>
     );

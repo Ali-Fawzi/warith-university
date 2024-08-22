@@ -8,7 +8,7 @@ import OnlineVideosIcon from '../asstes/icons/OnlineVideos.svg'
 import NetworkIcon from '../asstes/icons/Network.svg'
 export function WarithElevateSection() {
     return (
-        <div className='flex flex-col xl:flex-row items-end xl:items-center justify-center gap-24 bg-white p-4'>
+        <div className='flex flex-col xl:flex-row items-end xl:items-center justify-center gap-24 p-4'>
             <div className='flex flex-col items-end justify-center gap-4'>
                 <p className='font-semibold'>سجل الان</p>
                 <p className='text-3xl font-bold'>Warith Elevate انضم الى مجتمع</p>
