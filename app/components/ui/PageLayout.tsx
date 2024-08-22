@@ -159,7 +159,7 @@ function MenuDrawer({
 }) {
     return (
         <Drawer open={isOpen} onClose={onClose} openFrom="right">
-            <div className='px-6 flex flex-col items-end justify-start'>
+            <div className='px-6 flex flex-col items-end justify-start font-almarai'>
                 <div className={'pl-6 w-full'}>
                     {headerMenu.map((menuItem) =>
                         <nav
