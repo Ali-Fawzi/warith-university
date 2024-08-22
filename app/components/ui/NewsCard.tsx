@@ -6,7 +6,8 @@ export type itemNews = {
     title: string;
     pic: string;
 }
-export function NewsCard(item: itemNews) {
+export function NewsCard(itemNews: itemNews) {
+    const {item} = itemNews
     return (
         <div className='flex flex-row gap-4 bg-white'>
             <div className='max-w-sm flex flex-col py-4 px-8 justify-between'>
