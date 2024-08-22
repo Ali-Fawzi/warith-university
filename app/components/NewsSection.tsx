@@ -7,7 +7,7 @@ export function NewsSection(news: itemNews[]) {
         <div className='flex flex-col items-center justify-center mb-16'>
             <p className='text-center text-3xl font-bold'>النشاطات</p>
             <div className='flex flex-col-reverse xl:flex-row items-center justify-center gap-16 mt-8'>
-                <div>
+                <div className='flex flex-col items-center justify-center gap-16'>
                     {news.news.data.map((item: itemNews, i:number) =>
                         <div key={item.id} className='relative'>
                             <NewsCard  item={item} />

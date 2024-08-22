@@ -3,7 +3,7 @@ import {HeroSection} from "~/components/HeroSection";
 import LocationIcon from '../asstes/icons/Location.svg'
 import PhoneCallIcon from '../asstes/icons/PhoneCall.svg'
 import MailIcon from '../asstes/icons/Mail.svg'
-import {Form} from "@remix-run/react";
+import {Form, useNavigation} from "@remix-run/react";
 export const meta: MetaFunction = () => {
     return [
         { title: "جامعة وارث الانبياء" },
@@ -12,6 +12,8 @@ export const meta: MetaFunction = () => {
 };
 
 export default function ContactUs() {
+    const navigation = useNavigation();
+
     return (
         <div className='bg-white'>
             <section className='relative isolate overflow-hidden'>
@@ -26,7 +28,7 @@ export default function ContactUs() {
                     referrerPolicy="no-referrer-when-downgrade" />
             </section>
             <section className='flex flex-col-reverse items-center justify-around xl:flex-row max-w-6xl px-16 py-8 bg-dark mx-auto text-white'>
-                <div className='flex flex-col items-center justify-center border-white border-b xl:border-r xl:border-b-0 p-4'>
+                <div className='flex flex-col items-center justify-center border-white border-t xl:border-r xl:border-t-0 p-4'>
                     <LocationIcon />
                     <p className='text-right'>العراق - كربلاء المقدسة
                         طريق بغداد</p>
@@ -35,13 +37,13 @@ export default function ContactUs() {
                     <PhoneCallIcon />
                     <p>+9647800800758</p>
                 </div>
-                <div className='flex flex-col items-center justify-center border-white border-t xl:border-l xl:border-t-0 p-4'>
+                <div className='flex flex-col items-center justify-center border-white border-b xl:border-l xl:border-b-0 p-4'>
                     <MailIcon />
                     <p>Info@warithelevate.com</p>
                     <p>Support@warithelevate.com</p>
                 </div>
             </section>
-            <Form dir='RTL' className='mt-8 max-w-6xl py-8 mx-auto flex flex-col items-center justify-center gap-16'>
+            <Form dir='RTL' method="post" action='/contact' className='mt-8 max-w-6xl py-8 mx-auto flex flex-col items-center justify-center gap-16'>
                 <div className='flex flex-col items-center justify-center space-y-2'>
                     <p className='text-xl'>اخبرنا بما تفكر برسالة</p>
                     <p className='font-light max-w-xs text-center'>يمكنك اخبارنا بما تفكر او المشاكل التي تواجها لكي نتمكن من مساعدتك ومعرفة افكارك .</p>
@@ -50,7 +52,7 @@ export default function ContactUs() {
                     <div>
                         <label htmlFor="name"
                                className="block mb-2 text-sm font-medium">الاسم الكامل</label>
-                        <input type="text" id="first_name"
+                        <input type="text" id="name"
                                className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
                                placeholder="الاسم الكامل" required/>
                     </div>
@@ -86,7 +88,9 @@ export default function ContactUs() {
                 <button
                     type='submit'
                     className='inline-block rounded-md font-semibold text-center py-3 px-6 bg-brand text-white hover:bg-brand/90 ease-in-out transform transition duration-500 select-none'>
-                    ارسال الرسالة
+                    {navigation.state === "submitting"
+                        ? "يتم الارسال ..."
+                        : "ارسال الرسالة"}
                 </button>
             </Form>
         </div>

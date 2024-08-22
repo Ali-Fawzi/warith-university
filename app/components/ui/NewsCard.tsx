@@ -10,7 +10,7 @@ export function NewsCard(itemNews: itemNews) {
     const {item} = itemNews
     return (
         <div className='flex flex-row gap-4 bg-white'>
-            <div className='max-w-sm flex flex-col py-4 px-8 justify-between'>
+            <div className='max-w-sm min-w-64 flex flex-col py-4 px-8 justify-between'>
                 <p className='text-right font-semibold'>{item.title}</p>
                 <Link to={`news/${item.id}`} className='flex flex-row items-start justify-start gap-3'>
                     <LeftArrow />

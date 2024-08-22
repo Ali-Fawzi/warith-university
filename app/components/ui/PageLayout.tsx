@@ -162,12 +162,13 @@ function MenuDrawer({
             <div className='px-6 flex flex-col items-end justify-start'>
                 <div className={'pl-6 w-full'}>
                     {headerMenu.map((menuItem) =>
-                            <nav
-                                className='w-full border-brand border-b text-right py-4 last:border-none'
-                                key={menuItem.title}
-                            >
-                                <NavLink
-                                    prefetch={'intent'}
+                        <nav
+                            className='w-full border-brand border-b text-right py-4'
+                            key={menuItem.title}
+                        >
+                            <NavLink
+                                onClick={onClose}
+                                prefetch={'intent'}
                                 to={menuItem.link}
                                 className={({isActive}) => isActive ?
                                     "font-semibold" : ""
@@ -175,7 +176,35 @@ function MenuDrawer({
                                 {menuItem.title}
                             </NavLink>
                         </nav>
-                        )}
+                    )}
+                    <div>
+                        <nav
+                            className='w-full border-brand border-b text-right py-4'
+                        >
+                            <NavLink
+                                onClick={onClose}
+                                prefetch={'intent'}
+                                to={'sign-up'}
+                                className={({isActive}) => isActive ?
+                                    "font-semibold" : ""
+                                }>
+                                تسجيل الدخول
+                            </NavLink>
+                        </nav>
+                        <nav
+                            className='w-full text-right py-4'
+                        >
+                            <NavLink
+                                onClick={onClose}
+                                prefetch={'intent'}
+                                to={'login'}
+                                className={({isActive}) => isActive ?
+                                    "font-semibold" : ""
+                                }>
+                                التسجيل
+                            </NavLink>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </Drawer>
@@ -206,7 +235,7 @@ function Header({children}: { children: ReactNode }) {
                     </button>
                 </div>
                 <div className='hidden xl:flex flex-row space-x-4'>
-                    <Link to={'/register'}>
+                    <Link to={'/sign-up'}>
                         <Button variant={'secondary'}>التسجيل</Button>
                     </Link>
                     <Link to={'/login'}>
