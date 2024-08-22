@@ -73,7 +73,7 @@ export default function ContactUs() {
                                className="block mb-2 text-sm font-medium">العنوان</label>
                         <input type="text" id="address"
                                className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
-                               placeholder="العوان" required/>
+                               placeholder="العنوان" required/>
                     </div>
                     <div className='xl:col-span-2'>
                         <label htmlFor="message"
