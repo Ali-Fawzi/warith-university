@@ -9,7 +9,7 @@ import NetworkIcon from '../asstes/icons/Network.svg'
 export function WarithElevateSection() {
     return (
         <div className='flex flex-col xl:flex-row items-end xl:items-center justify-center gap-24 p-4'>
-            <div className='flex flex-col items-end justify-center gap-4'>
+            <div className='flex flex-col items-end justify-center gap-4 mx-auto'>
                 <p className='font-semibold'>سجل الان</p>
                 <p className=' text-2xl xl:text-3xl font-bold'>Warith Elevate انضم الى مجتمع</p>
                 <div className='mr-56 -mt-2'>
@@ -53,7 +53,7 @@ export function WarithElevateSection() {
                     </div>
                 </div>
             </div>
-            <div className='relative p-4 mt-8'>
+            <div className='relative p-4 mt-8 mx-auto'>
                 <div className='w-80 h-80 bg-brand rounded-xl'/>
                 <img
                     src={WarithElevateImg}

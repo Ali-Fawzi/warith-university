@@ -26,7 +26,7 @@ export function VisionSection() {
                     <MissionIcon />
                 </div>
             </div>
-            <ul dir='rtl' className='font-light text-right list-disc mr-3'>
+            <ul dir='rtl' className='font-light text-right list-disc mr-4'>
                 <li>بناء القدرات وتعزيز التدريب وتحفيز التعلم الذاتي لضمان التحسين المستمر</li>
                 <li>تعزيز الاخلاقيات والممارسات المهنية بما ينسجم مع منظومة الاخلاقية</li>
                 <li>التفكير الريادي في الاعمال لتحويل الافكار الى مشاريع نافعة في المجتمع</li>
