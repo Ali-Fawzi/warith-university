@@ -21,6 +21,7 @@ export function NewsCard(itemNews: itemNews) {
                 alt=''
                 src={import.meta.env.VITE_API_ENDPOINT +'/'+item.pic}
                 className='object-cover overflow-hidden h-32 w-32 xl:h-48 xl:w-80'
+                loading='lazy'
             />
         </div>
     );

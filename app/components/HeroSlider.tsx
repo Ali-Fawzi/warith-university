@@ -1,7 +1,7 @@
 import {Swiper, SwiperSlide} from "swiper/react";
 import {A11y, Navigation} from "swiper/modules";
-import LogoPng from "~/asstes/images/Logo.png";
-import Logo2 from "~/asstes/images/Logo2.png";
+import Logo from "~/asstes/icons/Logo2.svg";
+import Logo2 from "~/asstes/icons/Logo3.svg";
 import {Button} from "~/components/ui/Button";
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -38,11 +38,11 @@ export function HeroSlider(slides: slide[]) {
                             className='absolute flex flex-col items-start justify-center w-full h-full space-y-8 xl:space-y-16 mx-8 xl:mx-16'>
                             <div className='flex flex-row-reverse items-center justify-end space-x-4 w-96'>
                                 <div className='mt-auto'>
-                                    <img alt='' className="h-[80px] w-[150px] xl:h-[120px] xl:w-[221px]" src={LogoPng}/>
+                                    <Logo className="h-[80px] w-[150px] xl:h-[120px] xl:w-[221px]"/>
                                 </div>
                                 <div className='-mb-3'>
-                                    <img alt='' className="h-[126px] w-[81.9px] xl:h-[180px] xl:w-[117px]"
-                                         src={Logo2}/>
+                                    <Logo2 className="h-[126px] w-[81.9px] xl:h-[180px] xl:w-[117px]"
+                                         />
                                 </div>
                             </div>
                             <div className='flex flex-col space-y-4'>

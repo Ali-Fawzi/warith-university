@@ -10,6 +10,7 @@ export function VideosSection() {
                         title='استعدادات الجامعة للعام الدراسي القادم'
                         className='w-[340px] h-[253px] xl:w-[654px] xl:h-[370px] mx-auto'
                         src="https://www.youtube.com/embed/ShuGg7PzdGI"
+                        loading='lazy'
                     />
                     <div className='flex flex-row justify-end gap-2 mt-2'>
                         <p className='-mt-1 text-right'>استعدادات الجامعة للعام الدراسي القادم</p>
@@ -21,6 +22,7 @@ export function VideosSection() {
                         title='ماذا قال ضيوف مؤتمر وارث الدولي الاول للعلوم الهندسية" عن جامعة وارث الانبياء(عليه السلام)'
                         className='w-[340px] h-[253px] xl:w-[654px] xl:h-[370px] mx-auto'
                         src="https://www.youtube.com/embed/YrR1jc80t3o"
+                        loading='lazy'
                     />
                     <div className='flex flex-row justify-end items-center gap-2 mt-2'>
                         <p className='-mt-1 text-right'>.ماذا قال ضيوف مؤتمر وارث الدولي الاول للعلوم الهندسية" عن جامعة وارث الانبياء(عليه السلام)

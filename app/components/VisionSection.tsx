@@ -34,7 +34,12 @@ export function VisionSection() {
                 <li>تعزيز المجتمع المستدام</li>
             </ul>
         </div>
-          <img alt='' src={vision} className='object-cover overflow-hidden w-[380px] h-[494px] xl:h-[494px] xl:w-[366px]'/>
+          <img
+              alt=''
+              src={vision}
+              className='object-cover overflow-hidden w-[380px] h-[494px] xl:h-[494px] xl:w-[366px]'
+              loading='lazy'
+          />
       </div>
     );
 }

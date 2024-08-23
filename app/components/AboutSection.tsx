@@ -16,7 +16,12 @@ export function AboutSection() {
                         نؤمن بقوة الافكار ونقدم بيئة تعاونية يطمح لها رواد الاعمال والمبتكرين ونزود الافراد بالمعرفة والمهارات والموارد التي يحتاجون اليها لتحويل افكارهم الى مشاريع ناجحة ، نقدم نهجا شاملا للتطوير من خلال ورش عمل وبرامج التدريب والارشاد.</p>
                 </div>
             </div>
-            <img alt='' src={about} className='object-cover overflow-hidden'/>
+            <img
+                alt=''
+                loading='eager'
+                src={about}
+                className='object-cover overflow-hidden'
+            />
         </div>
     );
 }

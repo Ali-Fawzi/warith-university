@@ -8,7 +8,7 @@ export function NewsSection(news: itemNews[]) {
             <p className='text-center text-3xl font-bold'>النشاطات</p>
             <div className='flex flex-col-reverse xl:flex-row items-center justify-center gap-16 mt-8'>
                 <div className='flex flex-col items-center justify-center gap-16'>
-                    {news.news.data.map((item: itemNews, i:number) =>
+                    {news.news.data.slice(0, 3).map((item: itemNews, i:number) =>
                         <div key={item.id} className='relative'>
                             <NewsCard  item={item} />
                             {i === 0 ?
@@ -25,6 +25,7 @@ export function NewsSection(news: itemNews[]) {
                         alt=''
                         src={import.meta.env.VITE_API_ENDPOINT +'/'+news.news.data[0].pic}
                         className='object-cover overflow-hidden h-[253px] w-[380px] xl:h-[760px] xl:w-[580px]'
+                        loading='lazy'
                     />
                     <div aria-hidden="true" className="absolute inset-0 bg-dark/50"/>
                     <div className='absolute bottom-0 text-white text-2xl xl:text-3xl text-right p-4 xl:mb-20'>

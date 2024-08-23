@@ -59,7 +59,9 @@ export function WarithElevateSection() {
                     src={WarithElevateImg}
                     alt=''
                     sizes="(min-width: 64em) 25vw, (min-width: 48em) 30vw, 45vw"
-                    className='object-cover overflow-hidden w-80 h-80 rounded-xl absolute top-0 -rotate-[15deg] right-16'/>
+                    className='object-cover overflow-hidden w-80 h-80 rounded-xl absolute top-0 -rotate-[15deg] right-16'
+                    loading='lazy'
+                />
             </div>
         </div>
     );

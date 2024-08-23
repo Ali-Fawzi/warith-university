@@ -3,8 +3,8 @@ import {Link, NavLink} from "@remix-run/react";
 import {Drawer, useDrawer} from "~/components/ui/Drawer";
 import MenuIcon from "../../asstes/icons/Menu.svg"
 import Logo from "../../asstes/icons/Logo.svg"
-import Logo2 from "../../asstes/images/Logo2.png"
-import LogoPng from "../../asstes/images/Logo.png"
+import Logo2 from "../../asstes/icons/Logo2.svg"
+import Logo3 from "../../asstes/icons/Logo3.svg"
 import {Button} from "~/components/ui/Button";
 import {JSX} from "react/jsx-runtime";
 
@@ -133,7 +133,7 @@ export function PageLayout({children}: {children: ReactNode}) {
             <Footer>
                 <div className='flex flex-col items-center justify-center space-y-4 text-white'>
                     <div>
-                        <img alt='' className="h-[63.7px] w-[118.3px]" src={LogoPng}/>
+                        <Logo2 className="h-[63.7px] w-[118.3px]"/>
                     </div>
                     <div className='flex flex-col items-center justify-center text-3xl'>
                         <p className='border-brand border-b pb-4 font-light text-right'>مركز وارث للريادة والابتكار والتطوير</p>
@@ -273,7 +273,7 @@ function Footer({children}: { children: ReactNode }) {
             <div className="pb-8 pt-12">
                 <div className="grid grid-cols-1 xl:grid-cols-6 gap-8 mx-4 xl:mx-16">
                     <div className='xl:col-start-6 row-start-1 flex items-center justify-center xl:justify-end'>
-                        <img alt='' className="h-[126px] w-[81.9px] xl:h-[180px] xl:w-[117px]" src={Logo2}/>
+                        <Logo3 className="h-[126px] w-[81.9px] xl:h-[180px] xl:w-[117px]" />
                     </div>
                     <div className='flex xl:col-start-2 flex-col items-center justify-center space-y-2 text-white text-center xl:text-right'>
                         <p className='text-xl w-full'>روابط الموقع</p>
