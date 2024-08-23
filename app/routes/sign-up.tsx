@@ -1,6 +1,5 @@
 import {ActionFunction, MetaFunction} from "@remix-run/node";
 import {Form, useActionData, useNavigation} from "@remix-run/react";
-import clsx from "clsx";
 import {useEffect, useRef, useState} from "react";
 
 export const meta: MetaFunction = () => {
@@ -48,7 +47,6 @@ export default function SignUp() {
     };
 
     const inputRef = useRef<HTMLInputElement>(null);
-    const successRef = useRef<HTMLHeadingElement>(null);
     const mounted = useRef<boolean>(false);
 
     useEffect(() => {
@@ -75,7 +73,7 @@ export default function SignUp() {
                         <span className='text-brand'> انشاء </span>
                         <span className='text-navy'> حساب .</span>
                     </div>
-                    <p className='font-light max-w-xs text-center'>قم بتسجيل الدخول إلى حسابك حتى تتمكن من الاستمرار في استخدام الموقع .</p>
+                    <p className='font-light max-w-xs text-center'>قم بانشاء حساب حتى تتمكن من الاستمرار في استخدام الموقع .</p>
                 </div>
                 <div className='grid grid-cols-1 xl:grid-cols-2 gap-8 w-full p-4 xl:p-0 text-right'>
                     <div>
