@@ -14,9 +14,9 @@ export const meta: MetaFunction = () => {
   ];
 };
 export const loader = async () => {
-    const sponsors = await fetch(import.meta.env.VITE_API_ENDPOINT + "/sponsers");
-    const slides = await fetch(import.meta.env.VITE_API_ENDPOINT + "/slides");
-    const posts = await fetch(import.meta.env.VITE_API_ENDPOINT + "/posts");
+    const sponsors = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/sponsers`);
+    const slides = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/slides`);
+    const posts = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/posts`);
 
     return {
         sponsors: await sponsors.json(),

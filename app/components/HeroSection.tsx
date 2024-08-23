@@ -4,6 +4,7 @@ export function HeroSection ({title}: {title: string}) {
         <div className='h-48'>
             <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
                 <img
+                    loading='eager'
                     alt=""
                     src={universityImage}
                     className="h-full w-full object-cover object-center"
