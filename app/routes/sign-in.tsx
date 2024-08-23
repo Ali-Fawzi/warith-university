@@ -7,11 +7,11 @@ export const meta: MetaFunction = () => {
     ];
 };
 
-export default function Login() {
+export default function SignIn() {
     return (
         <>
             <section className='relative isolate overflow-hidden'>
-                login
+                sign-in
             </section>
         </>
     );

@@ -197,7 +197,7 @@ function MenuDrawer({
                             <NavLink
                                 onClick={onClose}
                                 prefetch={'intent'}
-                                to={'login'}
+                                to={'sign-in'}
                                 className={({isActive}) => isActive ?
                                     "font-semibold" : ""
                                 }>
@@ -238,7 +238,7 @@ function Header({children}: { children: ReactNode }) {
                     <Link to={'/sign-up'}>
                         <Button variant={'secondary'}>التسجيل</Button>
                     </Link>
-                    <Link to={'/login'}>
+                    <Link to={'/sign-in'}>
                         <Button>تسجيل الدخول</Button>
                     </Link>
                 </div>

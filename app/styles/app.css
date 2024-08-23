@@ -9,6 +9,27 @@
     --swiper-navigation-size: 24px !important;
     --swiper-navigation-sides-offset: 20px;
 }
+@layer base {
+    select {
+        background-position: left theme('spacing.2') center;
+        padding-left: theme('spacing.10');
+        padding-right: theme('spacing.3');
+    }
+}
+@layer utilities {
+    .fadeIn {
+        opacity: 0;
+        animation: fadeInAnimation ease-in-out 500ms forwards;
+    }
+}
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 #nprogress {
     pointer-events: none;
 }
