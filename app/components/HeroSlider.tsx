@@ -23,11 +23,12 @@ export function HeroSlider(slides: slide[]) {
             navigation
             className={'text-white h-screen bg-dark'}
         >
-            {slides.slides.data.map((slide: slide) =>
+            {slides.slides.data.map((slide: slide, i: number) =>
                 <SwiperSlide key={slide.title}>
                     <div>
                         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
                             <img
+                                loading={i === 0 ? 'eager':'lazy'}
                                 alt=""
                                 src={import.meta.env.VITE_API_ENDPOINT +'/'+ slide.pic}
                                 className="h-full w-full object-cover object-center"
