@@ -25,7 +25,7 @@ export default function AllCourses() {
                 <HeroSection title={'الدورات التدريبية'}/>
             </section>
             <section className='my-8 max-w-7xl mx-auto'>
-                <Pagination itemsStyle='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 p-4' itemsPerPage={4}>
+                <Pagination itemsStyle='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 p-4' itemsPerPage={4}>
                     {courses.data.map((course: course) => course.type === 'Tadreab' && (
                         <CourseCard key={course.id} course={course}/>)
                     )}
