@@ -35,7 +35,7 @@ export const action: ActionFunction = async ({ request }) => {
 export default function SignUp() {
     const actionData = useActionData();
     const navigation = useNavigation();
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState('Student');
 
     const state: "idle" | "success" | "error" | "submitting" = navigation.state === "submitting"
         ? "submitting"
@@ -132,7 +132,7 @@ export default function SignUp() {
                             name='role'
                             className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
                         >
-                            <option selected value="Student">طالب</option>
+                            <option value="Student">طالب</option>
                             <option value="Instructor">مدرب</option>
                             <option value="Company">شركة</option>
                         </select>

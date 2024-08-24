@@ -20,10 +20,10 @@ export function NewsSection(news: itemNews[]) {
                         </div>
                     )}
                 </div>
-                <div className='relative'>
+                {news.news.data[0] ? <div className='relative'>
                     <img
                         alt=''
-                        src={import.meta.env.VITE_API_ENDPOINT +'/'+news.news.data[0].pic}
+                        src={import.meta.env.VITE_API_ENDPOINT + '/' + news.news.data[0].pic}
                         className='object-cover overflow-hidden h-[253px] w-[380px] xl:h-[760px] xl:w-[580px]'
                         loading='lazy'
                     />
@@ -31,7 +31,8 @@ export function NewsSection(news: itemNews[]) {
                     <div className='absolute bottom-0 text-white text-2xl xl:text-3xl text-right p-4 xl:mb-20'>
                         <p>{news.news.data[0].title}</p>
                     </div>
-                </div>
+                </div> : ''}
+
             </div>
             <Link to={'news'} className='mt-8'>
                 <Button
