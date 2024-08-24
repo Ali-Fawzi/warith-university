@@ -1,6 +1,7 @@
 import {LoaderFunctionArgs, MetaFunction} from "@remix-run/node";
 import {HeroSection} from "~/components/HeroSection";
 import {useLoaderData} from "@remix-run/react";
+import {getDayName} from "~/lib/utils";
 
 export const meta: MetaFunction = () => {
     return [
@@ -22,19 +23,19 @@ export default function News() {
     return (
         <>
             <section className='relative isolate overflow-hidden'>
-                <HeroSection variant='complex' title={news.title} createdAt={news.createdAt} heading={'الأخبار'} />
+                <HeroSection variant='complex' title={news.title} date={news.createdAt} heading={'الأخبار'} time={getDayName(news.createdAt)}/>
             </section>
             <section className='my-8 max-w-7xl mx-auto'>
                 <div className='flex flex-col-reverse items-center justify-between gap-16 xl:flex-row-reverse p-4 mx-8 xl:mx-28'>
-                    <div className='flex flex-col items-end justify-center gap-8 max-w-xl'>
+                    <div className='flex flex-col items-end justify-center gap-8 max-w-xl mb-auto'>
                         <p>{news.content}</p>
                     </div>
-                    <div className='flex-col items-center justify-center gap-4'>
+                    <div className='flex flex-col items-end justify-center gap-4'>
                         <img
                             alt=''
                             loading='eager'
                             src={`${import.meta.env.VITE_API_ENDPOINT}/${news.pic}`}
-                            className='object-cover overflow-hidden max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl'
+                            className='object-cover overflow-hidden w-[400px] h-[320px]'
                         />
                         <div className='text-right'>
                             {news.description}

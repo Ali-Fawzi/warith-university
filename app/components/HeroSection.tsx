@@ -1,6 +1,6 @@
 import universityImage from '../asstes/images/university.jpeg'
 import {formatDateToDDMMYYYY, getDayName} from "~/lib/utils";
-export function HeroSection ({title, variant, createdAt, heading}: {title: string; variant?: 'complex'; createdAt?: string; heading?: string}) {
+export function HeroSection ({title, variant, date, heading, time}: {title: string; variant?: 'complex'; date?: string; heading?: string; time?: string}) {
     return (
         <div className='h-48'>
             <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
@@ -25,11 +25,11 @@ export function HeroSection ({title, variant, createdAt, heading}: {title: strin
                         {title}
                     </div>
                     <div className='flex flex-row items-center justify-center gap-1'>
-                        {createdAt && (
-                            <span>{formatDateToDDMMYYYY(createdAt)}</span>
+                        {date && (
+                            <span>{formatDateToDDMMYYYY(date)}</span>
                         )}
-                        {createdAt && (
-                            <span>{getDayName(createdAt)}</span>
+                        {time && (
+                            <span>{time}</span>
                         )}
                     </div>
                 </div>

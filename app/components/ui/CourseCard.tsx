@@ -16,7 +16,7 @@ export type course = {
 }
 export function CourseCard({course}: {course: course}) {
     return (
-        <div className='shadow-lg rounded-xl bg-white flex flex-col items-center justify-center'>
+        <Link to={`/courses/${course.id}`} className='shadow-lg rounded-xl bg-white flex flex-col items-center justify-center'>
             <img
                 alt=''
                 src={`${import.meta.env.VITE_API_ENDPOINT}/${course.cover}`}
@@ -40,6 +40,6 @@ export function CourseCard({course}: {course: course}) {
                     <Button baseButtonClasses='inline-block rounded-md text-center py-2 px-4'>انضمام</Button>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 }

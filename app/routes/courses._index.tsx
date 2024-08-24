@@ -2,7 +2,6 @@ import {MetaFunction} from "@remix-run/node";
 import {HeroSection} from "~/components/HeroSection";
 import {useLoaderData} from "@remix-run/react";
 import Pagination from "~/components/ui/Pagination";
-import {itemNews, NewsCard} from "~/components/ui/NewsCard";
 import {course, CourseCard} from "~/components/ui/CourseCard";
 
 export const meta: MetaFunction = () => {
@@ -18,7 +17,7 @@ export const loader = async () => {
         courses: await courses.json()
     };
 };
-export default function Courses() {
+export default function AllCourses() {
     const {courses} = useLoaderData<typeof loader>()
     return (
         <>

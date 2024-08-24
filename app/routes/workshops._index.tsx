@@ -2,7 +2,8 @@ import {MetaFunction} from "@remix-run/node";
 import {HeroSection} from "~/components/HeroSection";
 import {useLoaderData} from "@remix-run/react";
 import Pagination from "~/components/ui/Pagination";
-import {CourseCard, course} from "~/components/ui/CourseCard";
+import {course} from "~/components/ui/CourseCard";
+import {WorkshopCard} from "~/components/ui/WorkshopCard";
 
 export const meta: MetaFunction = () => {
     return [
@@ -17,7 +18,7 @@ export const loader = async () => {
         courses: await courses.json()
     };
 };
-export default function Workshops() {
+export default function AllWorkshops() {
     const {courses} = useLoaderData<typeof loader>()
     return (
         <>
@@ -27,7 +28,7 @@ export default function Workshops() {
             <section className='my-8 max-w-7xl mx-auto'>
                 <Pagination itemsStyle='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 p-4' itemsPerPage={4}>
                     {courses.data.map((course: course) => course.type === 'Warsha' && (
-                        <CourseCard key={course.id} course={course}/>)
+                        <WorkshopCard key={course.id} workshop={course}/>)
                     )}
                 </Pagination>
             </section>
