@@ -9,6 +9,7 @@
     --swiper-navigation-size: 24px !important;
     --swiper-navigation-sides-offset: 20px;
 }
+
 @layer base {
     select {
         background-position: left theme('spacing.2') center;

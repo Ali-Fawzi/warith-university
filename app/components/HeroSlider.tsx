@@ -13,7 +13,7 @@ type slide = {
     href: string;
     pic: string;
 }
-export function HeroSlider(slides: slide[]) {
+export function HeroSlider({slides} :{slides: slide[]}) {
     return (
         <Swiper
             dir={'rtl'}
@@ -23,7 +23,7 @@ export function HeroSlider(slides: slide[]) {
             navigation
             className={'text-white h-screen bg-dark'}
         >
-            {slides.slides.data.map((slide: slide, i: number) =>
+            {slides.data.map((slide: slide, i: number) =>
                 <SwiperSlide key={slide.title}>
                     <div>
                         <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
