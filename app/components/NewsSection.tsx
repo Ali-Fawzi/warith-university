@@ -2,20 +2,21 @@ import {itemNews, NewsCard} from "~/components/ui/NewsCard";
 import {Link} from "@remix-run/react";
 import {Button} from "~/components/ui/Button";
 import Vector from '../asstes/icons/Vector.svg'
+import clsx from "clsx";
 export function NewsSection(news: itemNews[]) {
     return (
-        <div className='flex flex-col items-center justify-center mb-16'>
+        <div className={clsx('flex flex-col items-center justify-center mb-16', news.news.data[0] ? 'block' : 'hidden')}>
             <p className='text-center text-3xl font-bold'>النشاطات</p>
             <div className='flex flex-col-reverse xl:flex-row items-center justify-center gap-16 mt-8'>
                 <div className='flex flex-col items-center justify-center gap-16'>
-                    {news.news.data.slice(0, 3).map((item: itemNews, i:number) =>
+                    {news.news.data.slice(0, 3).map((item: itemNews, i: number) =>
                         <div key={item.id} className='relative'>
-                            <NewsCard  item={item} />
+                            <NewsCard item={item}/>
                             {i === 0 ?
                                 <div className='hidden xl:block absolute -right-4 xl:-right-6 top-1/2'>
-                                 <Vector/>
+                                    <Vector/>
                                 </div>
-                            : ''}
+                                : ''}
 
                         </div>
                     )}
