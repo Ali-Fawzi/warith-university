@@ -3,7 +3,7 @@ import {Link} from "@remix-run/react";
 import {Button} from "~/components/ui/Button";
 import Vector from '../asstes/icons/Vector.svg'
 export function NewsSection({news}: {news: itemNews}) {
-    return news.data[0] ? (
+    return (
         <div className='flex flex-col items-center justify-center mb-16'>
             <p className='text-center text-3xl font-bold'>النشاطات</p>
             <div className='flex flex-col-reverse xl:flex-row items-center justify-center gap-16 mt-8'>
@@ -28,7 +28,7 @@ export function NewsSection({news}: {news: itemNews}) {
                         loading='lazy'
                     />
                     <div aria-hidden="true" className="absolute inset-0 bg-dark/50"/>
-                    <div className='absolute bottom-0 text-white text-2xl xl:text-3xl text-right p-4 xl:mb-20'>
+                    <div className='absolute bottom-0 text-white text-2xl xl:text-3xl text-right p-4 xl:mb-20 w-full'>
                         <p>{news.data[0].title}</p>
                     </div>
                 </div>
@@ -42,5 +42,5 @@ export function NewsSection({news}: {news: itemNews}) {
                 </Button>
             </Link>
         </div>
-    ) : '';
+    );
 }

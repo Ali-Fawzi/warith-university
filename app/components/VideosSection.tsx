@@ -31,7 +31,7 @@ export function VideosSection() {
                     </div>
                 </div>
             </div>
-            <Link to={'youtube-library'} className='mt-8'>
+            <Link to={'https://www.youtube.com/watch?v=KYDc2QRSnL4&list=PL75oXieLw5VDjEuFwxx3HdddUU0yKurYT'} className='mt-8'>
                 <Button
                     variant={'secondary'}
                     baseButtonClasses='inline-block rounded-md font-semibold text-center py-3 px-6 border'
