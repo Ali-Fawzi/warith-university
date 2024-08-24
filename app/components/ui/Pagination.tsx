@@ -1,7 +1,7 @@
 import React, { useState, Children, cloneElement } from 'react';
 import Vector from '../../asstes/icons/Vector.svg'
 
-const Pagination = ({ children, itemsPerPage }) => {
+const Pagination = ({ children, itemsPerPage, itemsStyle }) => {
     const [currentPage, setCurrentPage] = useState(1);
 
     const totalItems = Children.count(children);
@@ -46,7 +46,7 @@ const Pagination = ({ children, itemsPerPage }) => {
 
     return (
         <div>
-            <div className="flex flex-col items-center justify-center gap-16">
+            <div className={itemsStyle}>
                 {currentItems.map((child, index) => cloneElement(child, { key: index }))}
             </div>
             <div className="max-w-xs mx-auto flex flex-row items-center justify-center gap-8 mt-4">

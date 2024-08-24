@@ -25,7 +25,7 @@ export default function AllNews() {
                 <HeroSection title={'آخر الأخبار'}/>
             </section>
             <section className='my-8'>
-                <Pagination itemsPerPage={4}>
+                <Pagination itemsStyle='flex flex-col items-center justify-center gap-16' itemsPerPage={4}>
                     {news.data.map((item: itemNews) =>
                         <div key={item.id} className='relative w-full'>
                             <NewsCard itemNews={item} variant='page'/>

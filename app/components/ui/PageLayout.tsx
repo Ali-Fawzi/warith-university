@@ -23,11 +23,11 @@ const headerMenu: MenuItem[] = [
     },
     {
         title: "الدورات التدريبية",
-        link: "/workshops"
+        link: "/courses"
     },
     {
         title: "الورش",
-        link: "/courses"
+        link: "/workshops"
     },
     {
         title: "الاخبار",
