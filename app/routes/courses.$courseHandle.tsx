@@ -22,7 +22,7 @@ export default function Courses() {
     return (
         <>
             <section className='relative isolate overflow-hidden'>
-                <HeroSection variant='complex' title={course.title} date={course.startDate} heading={course.description} time={'يبدأ في'}/>
+                <HeroSection variant='complex' title={course.title} date={course.startDate} heading={'كورسات'} time={'يبدأ في'}/>
             </section>
             <section className='my-8 max-w-7xl mx-auto'>
                 <div className='flex flex-col-reverse items-center justify-between gap-16 xl:flex-row-reverse p-4 mx-8 xl:mx-28'>

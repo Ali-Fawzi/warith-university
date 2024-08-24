@@ -18,7 +18,7 @@ export function HeroSection ({title, variant, date, heading, time}: {title: stri
                     <span>{title.split(" ")[1]}</span>
                 </div> :
                 <div className='absolute flex flex-col items-end justify-center max-w-7xl m-auto left-0 right-0 h-full gap-1 text-white p-4'>
-                    <div className='text-brand text-xl'>
+                    <div className='text-brand text-xl text-right'>
                         {heading}
                     </div>
                     <div className='text-2xl xl:text-3xl font-bold text-right border-b-2 border-brand pb-2'>
