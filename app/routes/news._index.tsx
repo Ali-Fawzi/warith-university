@@ -17,7 +17,7 @@ export const loader = async () => {
         posts: await posts.json()
     };
 };
-export default function News() {
+export default function AllNews() {
     const {posts: news} = useLoaderData<typeof loader>()
     return (
         <>

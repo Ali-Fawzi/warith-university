@@ -1,5 +1,6 @@
 import universityImage from '../asstes/images/university.jpeg'
-export function HeroSection ({title}: {title: string}) {
+import {formatDateToDDMMYYYY, getDayName} from "~/lib/utils";
+export function HeroSection ({title, variant, createdAt, heading}: {title: string; variant?: 'complex'; createdAt?: string; heading?: string}) {
     return (
         <div className='h-48'>
             <div aria-hidden="true" className="absolute inset-0 overflow-hidden">
@@ -11,10 +12,28 @@ export function HeroSection ({title}: {title: string}) {
                 />
             </div>
             <div aria-hidden="true" className="absolute inset-0 bg-dark/50"/>
-            <div className='absolute text-white w-full text-center text-3xl font-bold mt-20'>
-                <span className='text-brand'> {title.split(" ")[0]} </span>
-                <span>{title.split(" ")[1]}</span>
-            </div>
+            {!variant ?
+                <div className='absolute text-white w-full text-center text-3xl font-bold mt-20'>
+                    <span className='text-brand'> {title.split(" ")[0]} </span>
+                    <span>{title.split(" ")[1]}</span>
+                </div> :
+                <div className='absolute flex flex-col items-end justify-center max-w-7xl m-auto left-0 right-0 h-full gap-1 text-white p-4'>
+                    <div className='text-brand text-xl'>
+                        {heading}
+                    </div>
+                    <div className='text-2xl xl:text-3xl font-bold text-right'>
+                        {title}
+                    </div>
+                    <div className='flex flex-row items-center justify-center gap-1'>
+                        {createdAt && (
+                            <span>{formatDateToDDMMYYYY(createdAt)}</span>
+                        )}
+                        {createdAt && (
+                            <span>{getDayName(createdAt)}</span>
+                        )}
+                    </div>
+                </div>
+            }
         </div>
     );
 }

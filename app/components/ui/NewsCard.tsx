@@ -30,7 +30,7 @@ export function NewsCard({itemNews, variant = 'section'}: {itemNews: itemNews, v
                 </div>
                 <img
                     alt=''
-                    src={import.meta.env.VITE_API_ENDPOINT + '/' + itemNews.pic}
+                    src={`${import.meta.env.VITE_API_ENDPOINT}/${itemNews.pic}`}
                     className={clsx('object-cover overflow-hidden h-32 w-32', variant === 'page' ? 'xl:h-56 xl:w-96' : ' xl:h-48 xl:w-80')}
                     loading='lazy'
                 />

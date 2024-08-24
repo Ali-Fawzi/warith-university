@@ -15,3 +15,8 @@ export function formatDateToDDMMYYYY(dateStr: string) {
 
     return `${day}-${month}-${year}`;
 }
+export function getDayName(dateString: string) {
+    const date = new Date(dateString);
+    const options = { weekday: 'long' };
+    return new Intl.DateTimeFormat('ar', options).format(date);
+}

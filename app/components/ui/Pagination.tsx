@@ -49,23 +49,25 @@ const Pagination = ({ children, itemsPerPage }) => {
             <div className="flex flex-col items-center justify-center gap-16">
                 {currentItems.map((child, index) => cloneElement(child, { key: index }))}
             </div>
-            <div className="max-w-xs mx-auto flex flex-row items-center justify-between mt-4">
+            <div className="max-w-xs mx-auto flex flex-row items-center justify-center gap-8 mt-4">
                 <button
                     className={currentPage === 1 ? 'opacity-50' : ''}
                     onClick={handlePrevClick} disabled={currentPage === 1}
                 >
                     <Vector />
                 </button>
-                {paginationRange.map((page) => (
-                    <button
-                        key={page}
-                        onClick={() => handlePageClick(page)}
-                        disabled={page === currentPage}
-                        className={page === currentPage ? 'text-white bg-dark px-3 py-2' : ''}
-                    >
-                        {page}
-                    </button>
-                ))}
+                <div className='flex flex-row items-center justify-center gap-4'>
+                    {paginationRange.map((page) => (
+                        <button
+                            key={page}
+                            onClick={() => handlePageClick(page)}
+                            disabled={page === currentPage}
+                            className={page === currentPage ? 'text-white bg-dark px-3 py-1' : ''}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                </div>
                 <button
                     onClick={handleNextClick}
                     className={currentPage === totalPages ? 'opacity-50' : ''}
