@@ -21,10 +21,10 @@ export function HeroSection ({title, variant, date, heading, time}: {title: stri
                     <div className='text-brand text-xl'>
                         {heading}
                     </div>
-                    <div className='text-2xl xl:text-3xl font-bold text-right'>
+                    <div className='text-2xl xl:text-3xl font-bold text-right border-b-2 border-brand pb-2'>
                         {title}
                     </div>
-                    <div className='flex flex-row items-center justify-center gap-1 border-t-2 border-brand'>
+                    <div className='flex flex-row items-center justify-center gap-1'>
                         {date && (
                             <span>{formatDateToDDMMYYYY(date)}</span>
                         )}
