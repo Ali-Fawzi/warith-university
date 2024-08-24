@@ -24,7 +24,7 @@ export default function Courses() {
             <section className='relative isolate overflow-hidden'>
                 <HeroSection variant='complex' title={course.title} date={course.startDate} heading={'كورسات'} time={'يبدأ في'}/>
             </section>
-            <section className='my-8 max-w-7xl mx-auto'>
+            <section className='my-8 max-w-7xl mx-auto text-right'>
                 <div className='flex flex-col-reverse items-center justify-between gap-16 xl:flex-row-reverse p-4 mx-8 xl:mx-28'>
                     <div className='flex flex-col items-end justify-start gap-8 max-w-xl mb-auto'>
                         <p className='text-2xl font-bold'>عن الدورة التدريبية</p>
