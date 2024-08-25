@@ -9,7 +9,7 @@ export function WorkshopsSection({workshops}: {workshops: course}) {
             <p className='text-center text-3xl font-bold'>الورش التدريبية</p>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-8 p-4 mt-8'>
                 {workshops.data.map((course: course) => course.type === 'Warsha' && (
-                    <div key={course.id} className='sm:w-[400px] sm:h-[536px] mx-auto'>
+                    <div key={course.id} className=' mx-auto'>
                         <WorkshopCard workshop={course}/>
                     </div>
                     )
