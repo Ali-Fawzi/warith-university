@@ -41,7 +41,7 @@ export const action: ActionFunction = async ({ request }) => {
     apiFormData.append("description", description as string);
     apiFormData.append("type", type as string);
     apiFormData.append("status", status as string);
-    apiFormData.append("lectures", JSON.stringify(lectures));
+    apiFormData.append("lectures", JSON.stringify(lectures.split("\n")));
     apiFormData.append("duration", duration as string);
     apiFormData.append("hasCertificate", hasCertificate as string);
     if (cover && cover instanceof File) {
@@ -55,8 +55,13 @@ export const action: ActionFunction = async ({ request }) => {
             Authorization: `Bearer ${token}`,
         },
     });
-
-    return res.json();
+    if (!res.ok) {
+        return 'Error';
+    }
+    const link = type === 'Warsha' ? 'workshops' : 'courses';
+    const response = await res.json();
+    const { id:courseId } = response;
+    return redirect(`/${link}/${courseId}`);
 };
 export async function loader({ request }) {
     const role = await roleCookie.parse(request.headers.get("Cookie"));
@@ -217,14 +222,10 @@ export default function CourseCreate() {
                     <div>
                         <label htmlFor="lectures"
                                className="block mb-2 text-sm font-medium">المحاضرات</label>
-                        <input
-                            type="text"
-                            id="lectures"
-                            className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
-                            placeholder="المحاضرات"
-                            required
-                            name="lectures"
-                        />
+                        <textarea id="lectures"
+                                  name="lectures"
+                                  className="block p-2.5 w-full h-10 text-sm bg-formInput rounded-md border-0"
+                                  placeholder="ادخل المحاضرات..."></textarea>
                     </div>
                     <div className='xl:col-span-2'>
                         <label htmlFor="description"
