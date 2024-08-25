@@ -88,7 +88,7 @@ export default function SignUp() {
                     </div>
                     <p className='font-light max-w-xs text-center'>قم بانشاء حساب حتى تتمكن من الاستمرار في استخدام الموقع .</p>
                 </div>
-                <div className='grid grid-cols-1 xl:grid-cols-2 gap-8 w-full p-4 xl:p-0 text-right'>
+                <div className='grid grid-cols-1 xl:grid-cols-2 gap-8 w-full p-4 xl:p-0 text-right max-w-lg xl:max-w-full'>
                     <div>
                         <label htmlFor="name"
                                className="block mb-2 text-sm font-medium">الاسم الكامل</label>
