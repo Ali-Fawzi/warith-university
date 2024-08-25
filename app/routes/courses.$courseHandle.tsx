@@ -29,6 +29,14 @@ export default function Courses() {
                     <div className='flex flex-col items-end justify-start gap-8 max-w-xl mb-auto'>
                         <p className='text-2xl font-bold'>عن الدورة التدريبية</p>
                         <p>{course.description}</p>
+                        <div className='flex flex-col items-end justify-start max-w-2xl'>
+                            <p className='text-lg font-bold'>ماذا ستتعلم في هذه الدورة؟</p>
+                            <ul dir='rtl' className='font-light text-right list-disc mr-4'>
+                                {course.lectures.map((lecture, i) =>
+                                    <li key={i}>{lecture}</li>
+                                )}
+                            </ul>
+                        </div>
                     </div>
                     <div className='flex flex-col items-end justify-center gap-3'>
                         <img
@@ -38,7 +46,7 @@ export default function Courses() {
                             className='object-cover overflow-hidden w-[400px] h-[320px]'
                         />
                         <div className='text-right'>
-                            اسم الدورة: {course.title}
+                        اسم الدورة: {course.title}
                         </div>
                         <div className='text-right'>
                             مدة الدورة: {course.duration}

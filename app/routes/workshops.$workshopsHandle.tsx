@@ -29,6 +29,14 @@ export default function Workshops() {
                     <div className='flex flex-col items-end justify-start gap-8 max-w-xl mb-auto'>
                         <p className='text-2xl font-bold'>عن الورشة التدريبية</p>
                         <p>{workshop.description}</p>
+                        <div className='flex flex-col items-end justify-start max-w-2xl'>
+                            <p className='text-lg font-bold'>ماذا ستتعلم في هذه الورشة؟</p>
+                            <ul dir='rtl' className='font-light text-right list-disc mr-4'>
+                                {workshop.lectures.map((lecture, i) =>
+                                    <li key={i}>{lecture}</li>
+                                )}
+                            </ul>
+                        </div>
                     </div>
                     <div className='flex flex-col items-end justify-center gap-3'>
                         <img
