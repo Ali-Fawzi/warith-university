@@ -75,6 +75,8 @@ export default function SignIn() {
                             placeholder="اسم المستخدم"
                             required
                             name="username"
+                            aria-describedby="error-message"
+                            ref={inputRef}
                         />
                     </div>
                     <div className='w-full'>
