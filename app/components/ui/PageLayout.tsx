@@ -202,7 +202,7 @@ function MenuDrawer({
                                 <NavLink
                                     onClick={onClose}
                                     prefetch={'intent'}
-                                    to={'sign-up'}
+                                    to={'sign-in'}
                                     className={({isActive}) => isActive ?
                                         "font-semibold" : ""
                                     }>
@@ -215,7 +215,7 @@ function MenuDrawer({
                                 <NavLink
                                     onClick={onClose}
                                     prefetch={'intent'}
-                                    to={'sign-in'}
+                                    to={'sign-up'}
                                     className={({isActive}) => isActive ?
                                         "font-semibold" : ""
                                     }>

@@ -1,12 +1,9 @@
-import {ActionFunction, MetaFunction} from "@remix-run/node";
+import {ActionFunction, MetaFunction, redirect} from "@remix-run/node";
 import {HeroSection} from "~/components/HeroSection";
-import LocationIcon from '../asstes/icons/Location.svg'
-import PhoneCallIcon from '../asstes/icons/PhoneCall.svg'
-import MailIcon from '../asstes/icons/Mail.svg'
-import {Form, Link, useActionData, useNavigation} from "@remix-run/react";
+import {Form, useActionData, useNavigation} from "@remix-run/react";
 import {useEffect, useRef} from "react";
 import clsx from "clsx";
-import {Button} from "~/components/ui/Button";
+import {jwtCookie, roleCookie} from "~/lib/cookies";
 export const meta: MetaFunction = () => {
     return [
         { title: "جامعة وارث الانبياء" },
@@ -33,7 +30,14 @@ export const action: ActionFunction = async ({ request }) => {
     return res.json();
 
 };
+export async function loader({ request }) {
+    const role = await roleCookie.parse(request.headers.get("Cookie"));
 
+    if(role && role === 'Instructor' || role === 'Root') {
+        return null;
+    }
+    return redirect('/');
+}
 export default function CourseCreate() {
     const actionData = useActionData();
     const navigation = useNavigation();
