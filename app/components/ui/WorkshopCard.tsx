@@ -18,7 +18,7 @@ export function WorkshopCard({workshop}: {workshop: course}) {
                 <div className='flex flex-col gap-2 w-full px-4 pb-4'>
                     <p className='text-brand text-right'>{workshop.title}</p>
                     <p dir={'RTL'} className='text-xl text-right font-bold min-h-14 max-w-72 line-clamp-1'>{workshop.description}</p>
-                    <div className='flex flex-row items-center justify-end gap-4'>
+                    <div className='flex flex-row items-center justify-end gap-4 text-sm'>
                         <div className='flex flex-row items-center justify-end gap-1'>
                             <p className='font-light'>{formatDateToDDMMYYYY(workshop.startDate)}</p>
                             <Calender/>

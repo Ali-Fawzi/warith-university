@@ -10,13 +10,24 @@ import {PageLayout} from "~/components/ui/PageLayout";
 import {LinksFunction} from "@remix-run/node";
 import React, {useMemo} from "react";
 import NProgress from 'nprogress';
+import {jwtCookie, roleCookie} from "~/lib/cookies";
+import {useRouteLoaderData} from "react-router";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles },
 ];
+export const loader = async ({ request }) => {
+    const role = await roleCookie.parse(request.headers.get("Cookie"));
+    const token = await jwtCookie.parse(request.headers.get("Cookie"));
+    return {
+        role,
+        token
+    };
+};
 export function Layout({ children }: { children: React.ReactNode }) {
     const navigation = useNavigation();
     const fetchers = useFetchers();
+    const {role, token} = useRouteLoaderData<typeof loader>('root');
 
     const state = useMemo<'idle' | 'loading'>(
         function getGlobalState() {
@@ -47,7 +58,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-      <PageLayout>
+      <PageLayout role={role} token={token}>
           {children}
       </PageLayout>
         <ScrollRestoration />

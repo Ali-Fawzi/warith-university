@@ -26,7 +26,7 @@ export function CourseCard({course}: {course: course}) {
             <div className='flex flex-col gap-2 w-full p-4'>
                 <p className='text-brand text-right'>{course.title}</p>
                 <p dir={'RTL'} className='text-xl text-right font-bold min-h-14 line-clamp-1'>{course.description}</p>
-                <div className='flex flex-row items-center justify-end gap-4'>
+                <div className='flex flex-row items-center justify-end gap-4 text-sm'>
                     <div className='flex flex-row items-center justify-end gap-1'>
                         <p className='font-light'>{formatDateToDDMMYYYY(course.startDate)}</p>
                         <Calender />

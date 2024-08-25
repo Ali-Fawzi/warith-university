@@ -39,6 +39,11 @@ export default function Workshops() {
                         </div>
                     </div>
                     <div className='flex flex-col items-end justify-center gap-3'>
+                        <button
+                            type='submit'
+                            className='inline-block rounded-sm font-semibold text-center py-3 px-6 bg-brand text-white hover:bg-brand/90 ease-in-out transform transition duration-500 select-none w-full'>
+                            سجل الان
+                        </button>
                         <img
                             alt=''
                             loading='eager'

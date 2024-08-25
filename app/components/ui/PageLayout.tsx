@@ -102,7 +102,7 @@ const footerNavigation = {
         },
     ],
 }
-export function PageLayout({children}: {children: ReactNode}) {
+export function PageLayout({children, role, token}: {children: ReactNode; role?: string; token?: string}) {
     return (
         <>
             <div className="flex flex-col min-h-screen bg-background font-almarai font-normal">
@@ -112,7 +112,7 @@ export function PageLayout({children}: {children: ReactNode}) {
                     </a>
                 </div>
                 <div className='bg-dark p-2 text-left text-white'>الموقع الرسمي للجامعة</div>
-                <Header>
+                <Header role={role} token={token}>
                     <Link to={'/'} prefetch={'intent'}>
                         <div className='flex flex-row items-center justify-center space-x-4'>
                             <div className='flex flex-col items-end justify-center text-sm xl:text-base text-right'>
@@ -153,9 +153,13 @@ export function PageLayout({children}: {children: ReactNode}) {
 function MenuDrawer({
     isOpen,
     onClose,
+    token,
+    role
 }: {
     isOpen: boolean;
     onClose: () => void;
+    token ?: string;
+    role ?: string;
 }) {
     return (
         <Drawer open={isOpen} onClose={onClose} openFrom="right">
@@ -177,41 +181,71 @@ function MenuDrawer({
                             </NavLink>
                         </nav>
                     )}
-                    <div>
-                        <nav
-                            className='w-full border-brand border-b text-right py-4'
-                        >
+                    {role === 'Instructor' || role === 'Root' && (
+                        <nav className='w-full border-brand border-b text-right py-4'>
                             <NavLink
                                 onClick={onClose}
                                 prefetch={'intent'}
-                                to={'sign-up'}
+                                to={'course-create'}
                                 className={({isActive}) => isActive ?
                                     "font-semibold" : ""
                                 }>
-                                تسجيل الدخول
+                                انشاء دورة
                             </NavLink>
                         </nav>
+                    )}
+                    {!token && (
+                        <div>
+                            <nav
+                                className='w-full border-brand border-b text-right py-4'
+                            >
+                                <NavLink
+                                    onClick={onClose}
+                                    prefetch={'intent'}
+                                    to={'sign-up'}
+                                    className={({isActive}) => isActive ?
+                                        "font-semibold" : ""
+                                    }>
+                                    تسجيل الدخول
+                                </NavLink>
+                            </nav>
+                            <nav
+                                className='w-full text-right py-4'
+                            >
+                                <NavLink
+                                    onClick={onClose}
+                                    prefetch={'intent'}
+                                    to={'sign-in'}
+                                    className={({isActive}) => isActive ?
+                                        "font-semibold" : ""
+                                    }>
+                                    التسجيل
+                                </NavLink>
+                            </nav>
+                        </div>
+                    )}
+                    {token && (
                         <nav
                             className='w-full text-right py-4'
                         >
                             <NavLink
                                 onClick={onClose}
                                 prefetch={'intent'}
-                                to={'sign-in'}
+                                to={'sign-out'}
                                 className={({isActive}) => isActive ?
                                     "font-semibold" : ""
                                 }>
-                                التسجيل
+                                تسجيل الخروج
                             </NavLink>
                         </nav>
-                    </div>
+                    )}
                 </div>
             </div>
         </Drawer>
     );
 }
 
-function Header({children}: { children: ReactNode }) {
+function Header({children, role, token}: { children: ReactNode; role?: string; token?: string }) {
     const {
         isOpen: isMenuOpen,
         openDrawer: openMenu,
@@ -220,7 +254,7 @@ function Header({children}: { children: ReactNode }) {
 
     return (
         <>
-            <MenuDrawer isOpen={isMenuOpen} onClose={closeMenu}/>
+            <MenuDrawer token={token} role={role} isOpen={isMenuOpen} onClose={closeMenu}/>
             <header
                 role="banner"
                 className='flex flex-row items-center justify-between space-x-8 mb-4 mx-4 xl:mx-16'
@@ -234,18 +268,41 @@ function Header({children}: { children: ReactNode }) {
                         <MenuIcon className="h-6 w-6"/>
                     </button>
                 </div>
-                <div className='hidden xl:flex flex-row space-x-4'>
-                    <Link to={'/sign-up'}>
-                        <Button variant={'secondary'}>التسجيل</Button>
-                    </Link>
-                    <Link to={'/sign-in'}>
-                        <Button>تسجيل الدخول</Button>
-                    </Link>
-                </div>
+                {!token && (
+                    <div className='hidden xl:flex flex-row space-x-4'>
+                        <Link to={'/sign-up'}>
+                            <Button variant={'secondary'}>التسجيل</Button>
+                        </Link>
+                        <Link to={'/sign-in'}>
+                            <Button>تسجيل الدخول</Button>
+                        </Link>
+                    </div>
+                )}
+                {token && (
+                    <div className='hidden xl:block'>
+                        <Link to={'/sign-out'}>
+                            <Button variant={'secondary'}>تسجيل الخروج</Button>
+                        </Link>
+                    </div>
+                )}
                 <div className='grow flex flex-row items-center justify-end space-x-8'>
                     <div className='hidden xl:flex flex-row items-end justify-between space-x-4'>
+                        {role === 'Instructor' || role === 'Root' && (
+                            <nav
+                                className='border-brand border-l first:border-none px-2 hover:text-black/70 ease-in-out transform transition duration-500'>
+                                <NavLink
+                                    prefetch={'intent'}
+                                    to={'course-create'}
+                                    className={({isActive}) => isActive ?
+                                        "font-semibold" : ""
+                                    }>
+                                    انشاء دورة
+                                </NavLink>
+                            </nav>
+                        )}
                         {headerMenu.map((menuItem) =>
-                            <nav key={menuItem.title} className='border-brand border-l first:border-none px-2 hover:text-black/70 ease-in-out transform transition duration-500'>
+                            <nav key={menuItem.title}
+                                 className='border-brand border-l first:border-none px-2 hover:text-black/70 ease-in-out transform transition duration-500'>
                                 <NavLink
                                     prefetch={'intent'}
                                     to={menuItem.link}

@@ -1,6 +1,7 @@
-import {ActionFunction, MetaFunction} from "@remix-run/node";
+import {ActionFunction, MetaFunction, redirect} from "@remix-run/node";
 import {Form, useActionData, useNavigation} from "@remix-run/react";
 import {useEffect, useRef} from "react";
+import {jwtCookie, roleCookie} from "~/lib/cookies";
 
 export const meta: MetaFunction = () => {
     return [
@@ -15,23 +16,35 @@ export const action: ActionFunction = async ({ request }) => {
     const password = formData.get("password");
 
     const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/users/sign-in`, {
-        method: "post",
+        method: "POST",
         body: JSON.stringify({ username, password }),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
     });
 
-    return res.json();
+    if (!res.ok) {
+        return 'Error';
+    }
+    const response = await res.json();
+    const { token, data } = response;
+    const { role } = data;
 
+    return redirect("/", {
+        headers: [
+            ["Set-Cookie", await jwtCookie.serialize(token)],
+            ["Set-Cookie", await roleCookie.serialize(role)],
+        ],
+    });
 };
 export default function SignIn() {
     const actionData = useActionData();
     const navigation = useNavigation();
 
+    console.log(actionData)
     const state: "idle" | "success" | "error" | "submitting" = navigation.state === "submitting"
         ? "submitting"
-        : actionData?.name === 'Error'
+        : actionData === 'Error'
             ? "error"
             : "idle";
 

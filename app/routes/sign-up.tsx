@@ -1,6 +1,7 @@
-import {ActionFunction, MetaFunction} from "@remix-run/node";
+import {ActionFunction, MetaFunction, redirect} from "@remix-run/node";
 import {Form, useActionData, useNavigation} from "@remix-run/react";
 import {useEffect, useRef, useState} from "react";
+import {jwtCookie, roleCookie} from "~/lib/cookies";
 
 export const meta: MetaFunction = () => {
     return [
@@ -14,7 +15,7 @@ export const action: ActionFunction = async ({ request }) => {
     const name = formData.get("name");
     const username = formData.get("username");
     const password = formData.get("password");
-    const role = formData.get("role");
+    const userRole = formData.get("role");
     const jobTitle = formData.get("jobTitle");
     const linkedIn = formData.get("linkedIn");
     const website = formData.get("website");
@@ -23,13 +24,25 @@ export const action: ActionFunction = async ({ request }) => {
 
     const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/users/sign-up`, {
         method: "post",
-        body: JSON.stringify({ email, name, username, password, role, jobTitle, linkedIn, bio, website }),
+        body: JSON.stringify({ email, name, username, password, userRole, jobTitle, linkedIn, bio, website }),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
     });
 
-    return res.json();
+    if (!res.ok) {
+        return 'Error';
+    }
+    const response = await res.json();
+    const { token, data } = response;
+    const { role } = data;
+
+    return redirect("/", {
+        headers: [
+            ["Set-Cookie", await jwtCookie.serialize(token)],
+            ["Set-Cookie", await roleCookie.serialize(role)],
+        ],
+    });
 
 };
 export default function SignUp() {
