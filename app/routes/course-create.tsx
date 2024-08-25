@@ -31,6 +31,7 @@ export const action: ActionFunction = async ({ request }) => {
     if (!token) {
         return redirect("/login");
     }
+
     const apiFormData = new FormData();
     apiFormData.append("title", title as string);
     apiFormData.append("content", content as string);
@@ -49,7 +50,7 @@ export const action: ActionFunction = async ({ request }) => {
 
     const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses`, {
         method: "POST",
-        body: apiFormData, // Send the FormData instead of JSON
+        body: apiFormData,
         headers: {
             Authorization: `Bearer ${token}`,
         },
