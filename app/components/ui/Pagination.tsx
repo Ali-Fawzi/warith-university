@@ -1,45 +1,52 @@
 import React, { useState, Children, cloneElement } from 'react';
 import Vector from '../../asstes/icons/Vector.svg'
+import { useNavigate } from '@remix-run/react';
 
-const Pagination = ({ children, itemsPerPage, itemsStyle }) => {
-    const [currentPage, setCurrentPage] = useState(1);
-
-    const totalItems = Children.count(children);
+const Pagination = ({ children, itemsPerPage, itemsStyle, currentPage, totalItems }) => {
+    const navigate = useNavigate();
     const totalPages = Math.ceil(totalItems / itemsPerPage);
 
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: 'instant', // Smooth scroll effect
+            behavior: 'instant',
         });
     };
-    const handlePrevClick = () => {
-        if (currentPage > 1) {
-            setCurrentPage(currentPage - 1);
-            scrollToTop();
-        }
-    };
-
-    const handleNextClick = () => {
-        if (currentPage < totalPages) {
-            setCurrentPage(currentPage + 1);
-            scrollToTop();
-        }
-    };
-
     const handlePageClick = (page) => {
-        setCurrentPage(page);
+        const skip = (page - 1) * itemsPerPage;
+        navigate(`?skip=${skip}&take=${itemsPerPage}`);
         scrollToTop();
     };
 
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentItems = Children.toArray(children).slice(startIndex, startIndex + itemsPerPage);
-
     const getPaginationRange = () => {
-        const start = Math.max(1, currentPage - 2);
-        const end = Math.min(totalPages, start + 4);
+        if (totalPages <= 5) {
+            return Array.from({ length: totalPages }, (_, i) => i + 1);
+        }
 
-        return Array.from({ length: end - start + 1 }, (_, i) => start + i);
+        const range = [];
+        const leftSiblingIndex = Math.max(currentPage - 1, 2);
+        const rightSiblingIndex = Math.min(currentPage + 1, totalPages - 1);
+
+        const showLeftEllipsis = leftSiblingIndex > 2;
+        const showRightEllipsis = rightSiblingIndex < totalPages - 1;
+
+        range.push(1);
+
+        if (showLeftEllipsis) {
+            range.push('...');
+        }
+
+        for (let i = leftSiblingIndex; i <= rightSiblingIndex; i++) {
+            range.push(i);
+        }
+
+        if (showRightEllipsis) {
+            range.push('...');
+        }
+
+        range.push(totalPages);
+
+        return range;
     };
 
     const paginationRange = getPaginationRange();
@@ -47,21 +54,22 @@ const Pagination = ({ children, itemsPerPage, itemsStyle }) => {
     return (
         <div>
             <div className={itemsStyle}>
-                {currentItems.map((child, index) => cloneElement(child, { key: index }))}
+                {children}
             </div>
             <div className="max-w-xs mx-auto flex flex-row items-center justify-center gap-8 mt-4">
                 <button
                     className={currentPage === 1 ? 'opacity-50' : ''}
-                    onClick={handlePrevClick} disabled={currentPage === 1}
+                    onClick={() => handlePageClick(currentPage - 1)}
+                    disabled={currentPage === 1}
                 >
-                    <Vector />
+                    <Vector/>
                 </button>
                 <div className='flex flex-row items-center justify-center gap-4'>
-                    {paginationRange.map((page) => (
+                    {paginationRange.map((page, index) => (
                         <button
-                            key={page}
-                            onClick={() => handlePageClick(page)}
-                            disabled={page === currentPage}
+                            key={index}
+                            onClick={() => typeof page === 'number' ? handlePageClick(page) : null}
+                            disabled={page === currentPage || page === '...'}
                             className={page === currentPage ? 'text-white bg-dark px-3 py-1' : ''}
                         >
                             {page}
@@ -69,11 +77,11 @@ const Pagination = ({ children, itemsPerPage, itemsStyle }) => {
                     ))}
                 </div>
                 <button
-                    onClick={handleNextClick}
+                    onClick={() => handlePageClick(currentPage + 1)}
                     className={currentPage === totalPages ? 'opacity-50' : ''}
                     disabled={currentPage === totalPages}
                 >
-                    <Vector className='rotate-180' />
+                    <Vector className='rotate-180'/>
                 </button>
             </div>
         </div>
