@@ -14,7 +14,7 @@ export function WorkshopCard({workshop}: {workshop: course}) {
                 className='object-cover overflow-hidden w-[461px] h-[246px] rounded-t-xl'
                 loading='lazy'
             />
-            <div className='flex flex-row-reverse items-center justify-between'>
+            <div className='flex flex-row-reverse items-center justify-between w-full'>
                 <div className='flex flex-col gap-2 w-full px-4 pb-4'>
                     <p className='text-brand text-right'>{workshop.title}</p>
                     <p dir={'RTL'} className='text-xl text-right font-bold min-h-14 max-w-72 line-clamp-1'>{workshop.description}</p>
