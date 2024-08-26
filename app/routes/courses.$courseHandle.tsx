@@ -93,7 +93,7 @@ export default function Courses() {
                                 </button>
                             </Link>
                         )}
-                        {role !== 'student' && (
+                        {role === 'student' && (
                             <button
                                 type='submit'
                                 disabled={isEnrolled}
