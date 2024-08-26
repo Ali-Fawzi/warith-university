@@ -50,11 +50,11 @@ export const action: ActionFunction = async ({ request }) => {
     });
 
     if (!res.ok) {
-        return await res.json();
+        return 'Error';
     }
     const response = await res.json();
-    const { token, data } = response;
-    const { role } = data;
+    const { token, user } = response;
+    const { role } = user;
 
     return redirect("/", {
         headers: [
@@ -62,17 +62,14 @@ export const action: ActionFunction = async ({ request }) => {
             ["Set-Cookie", await roleCookie.serialize(role)],
         ],
     });
-
 };
 export default function SignUp() {
     const actionData = useActionData();
     const navigation = useNavigation();
     const [selectedOption, setSelectedOption] = useState('Student');
-
-    console.log(actionData)
     const state: "idle" | "success" | "error" | "submitting" = navigation.state === "submitting"
         ? "submitting"
-        : actionData?.name === 'Error'
+        : actionData === 'Error'
             ? "error"
             : "idle";
     const handleSelectChange = (event) => {
@@ -180,7 +177,8 @@ export default function SignUp() {
                                 file:bg-formInput file:border-0
                                 file:me-4
                                 file:py-3 file:px-4"
-                               placeholder="الغلاف" required/>
+                               placeholder="صورة الحساب"
+                               required/>
                     </div>
                     {selectedOption === "Instructor" && <>
                         <div className='fadeIn'>
