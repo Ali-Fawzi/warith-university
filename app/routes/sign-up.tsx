@@ -131,12 +131,12 @@ export default function SignUp() {
                     </div>
                     <div>
                         <label htmlFor="username"
-                               className="block mb-2 text-sm font-medium">اسم المستخدم</label>
+                               className="block mb-2 text-sm font-medium">رقم الهاتف</label>
                         <input
                             type="text"
                             id="username"
                             className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
-                            placeholder="اسم المستخدم"
+                            placeholder="رقم الهاتف"
                             required
                             name="username"
                         />
