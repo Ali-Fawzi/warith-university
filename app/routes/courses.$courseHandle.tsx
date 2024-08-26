@@ -32,7 +32,7 @@ export default function Courses() {
                         <div className='flex flex-col items-end justify-start max-w-2xl'>
                             <p className='text-lg font-bold'>ماذا ستتعلم في هذه الدورة؟</p>
                             <ul dir='rtl' className='font-light text-right list-disc mr-4'>
-                                {course.lectures.map((lecture, i) =>
+                                {course.lectures.map((lecture: string, i: number) =>
                                     <li key={i}>{lecture}</li>
                                 )}
                             </ul>

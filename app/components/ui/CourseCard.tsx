@@ -16,7 +16,7 @@ export type course = {
 }
 export function CourseCard({course}: {course: course}) {
     return (
-        <Link to={`/courses/${course.id}`} className='shadow-lg rounded-xl bg-white flex flex-col items-center justify-center'>
+        <Link to={`/courses/${course.id}`} className='shadow-sm transition transform ease-in-out duration-500 hover:shadow-xl border border-white hover:border-background rounded-xl bg-white flex flex-col items-center justify-center'>
             <img
                 alt=''
                 src={`${import.meta.env.VITE_API_ENDPOINT}/${course.cover}`}
@@ -24,9 +24,9 @@ export function CourseCard({course}: {course: course}) {
                 loading='lazy'
             />
             <div className='flex flex-col gap-2 w-full p-4'>
-                <p className='text-brand text-right'>{course.title}</p>
-                <p dir={'RTL'} className='text-xl text-right font-bold min-h-14 line-clamp-1'>{course.description}</p>
-                <div className='flex flex-row items-center justify-end gap-4 text-sm'>
+                <p className='text-brand font-light text-right'>{course.title}</p>
+                <p dir={'RTL'} className='text-xl text-right min-h-14 line-clamp-1'>{course.description}</p>
+                <div className='flex flex-row items-center justify-between gap-4 text-sm'>
                     <div className='flex flex-row items-center justify-end gap-1'>
                         <p className='font-light'>{formatDateToDDMMYYYY(course.startDate)}</p>
                         <Calender />
@@ -35,9 +35,6 @@ export function CourseCard({course}: {course: course}) {
                         <p className='font-light'>{course.duration}</p>
                         <Time />
                     </div>
-                </div>
-                <div className='ml-2'>
-                    <Button baseButtonClasses='inline-block rounded-md text-center py-2 px-4'>انضمام</Button>
                 </div>
             </div>
         </Link>

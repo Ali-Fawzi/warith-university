@@ -14,7 +14,7 @@ export type itemNews = {
 export function NewsCard({itemNews, variant = 'section'}: {itemNews: itemNews, variant: 'page' | 'section'}) {
     return (
         <div className='max-w-5xl mx-auto'>
-            <div className='flex flex-row justify-between bg-white'>
+            <div className='flex flex-row justify-between bg-white rounded-xl shadow-sm'>
                 <div className={clsx('grow flex flex-col py-4 px-8 justify-between', variant === 'section' ? 'max-w-sm' : '')}>
                     <p className='text-right font-semibold'>{itemNews.title}</p>
                     <div className='flex flex-row items-center justify-between'>
@@ -31,7 +31,7 @@ export function NewsCard({itemNews, variant = 'section'}: {itemNews: itemNews, v
                 <img
                     alt=''
                     src={`${import.meta.env.VITE_API_ENDPOINT}/${itemNews.pic}`}
-                    className={clsx('object-cover overflow-hidden h-32 w-32', variant === 'page' ? 'xl:h-56 xl:w-96' : ' xl:h-48 xl:w-80')}
+                    className={clsx('object-cover overflow-hidden h-32 w-32 rounded-r-xl', variant === 'page' ? 'xl:h-56 xl:w-96' : ' xl:h-48 xl:w-80')}
                     loading='lazy'
                 />
             </div>
