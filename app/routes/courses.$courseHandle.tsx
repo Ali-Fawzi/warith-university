@@ -1,7 +1,8 @@
-import {LoaderFunctionArgs, MetaFunction} from "@remix-run/node";
+import {ActionFunction, LoaderFunctionArgs, MetaFunction} from "@remix-run/node";
 import {HeroSection} from "~/components/HeroSection";
-import {Form, useLoaderData} from "@remix-run/react";
-import {jwtCookie} from "~/lib/cookies";
+import {Form, Link, useActionData, useLoaderData, useNavigation} from "@remix-run/react";
+import {jwtCookie, roleCookie} from "~/lib/cookies";
+import clsx from "clsx";
 
 export const meta: MetaFunction = () => {
     return [
@@ -9,12 +10,29 @@ export const meta: MetaFunction = () => {
         { name: "الوصف", content: "اهلا بكم في جامعة وارث الانبياء في كربلاء المقدسة" },
     ];
 };
+export const action: ActionFunction = async (args: LoaderFunctionArgs) => {
+    await new Promise((res) => setTimeout(res, 1000));
+    const {courseHandle} = args.params;
+    const token = await jwtCookie.parse(args.request.headers.get("Cookie"));
 
+    const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments`, {
+        method: "post",
+        body: JSON.stringify({ courseId:courseHandle }),
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    return res.json();
+
+};
 export async function loader(args: LoaderFunctionArgs) {
     const {courseHandle} = args.params;
     const token = await jwtCookie.parse(args.request.headers.get("Cookie"));
+    const role = await roleCookie.parse(args.request.headers.get("Cookie"));
     const course = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses/${courseHandle}`);
-    const enrollments = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/${courseHandle}`, {
+    const enrollments = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/?courseId=${courseHandle}`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,
@@ -23,13 +41,24 @@ export async function loader(args: LoaderFunctionArgs) {
 
     return {
         course: await course.json(),
-        enrollments: await enrollments.json()
+        enrollments: await enrollments.json(),
+        role
     };
 }
 
 export default function Courses() {
-    const {course, enrollments} = useLoaderData<typeof loader>()
-    console.log(course)
+    const {course, enrollments, role} = useLoaderData<typeof loader>()
+    const isEnrolled = enrollments.length > 0
+    const actionData = useActionData();
+    const navigation = useNavigation();
+
+    const state: "idle" | "success" | "error" | "submitting" = navigation.state === "submitting"
+        ? "submitting"
+        : actionData?.name === 'Error'
+            ? "error"
+            : actionData?.status === 'Unread'
+                ? "success"
+                : "idle";
     return (
         <>
             <section className='relative isolate overflow-hidden'>
@@ -49,18 +78,30 @@ export default function Courses() {
                             </ul>
                         </div>
                     </div>
-                    <Form method='POST' className='flex flex-col items-end justify-center gap-3'>
-                        {/*<div className='text-rose-500 text-center mx-auto' id="error-message">*/}
-                        {/*    {state === "error" ? <div>*/}
-                        {/*        <p>تعذر التسجيل</p>*/}
-                        {/*        <p>يرجى اعادة المحاولة لاحقا</p>*/}
-                        {/*    </div> : ''}*/}
-                        {/*</div>*/}
-                        <button
-                            type='submit'
-                            className='inline-block rounded-sm font-semibold text-center py-3 px-6 bg-brand text-white hover:bg-brand/90 ease-in-out transform transition duration-500 select-none w-full'>
-                            سجل الان
-                        </button>
+                    <Form method='POST' replace className='flex flex-col items-end justify-center gap-3'>
+                        <div className='text-rose-500 text-center mx-auto' id="error-message">
+                            {state === "error" ? <div>
+                                <p>تعذر التسجيل</p>
+                                <p>يرجى اعادة المحاولة لاحقا</p>
+                            </div> : ''}
+                        </div>
+                        {role === null && (
+                            <Link to={'/sign-in'} className='w-full'>
+                                <button
+                                    className='inline-block rounded-sm font-semibold text-center py-3 px-6 ease-in-out transform transition duration-500 select-none w-full bg-brand text-white hover:bg-brand/90'>
+                                    قم بتسجيل الدخول
+                                </button>
+                            </Link>
+                        )}
+                        {role !== 'student' && (
+                            <button
+                                type='submit'
+                                disabled={isEnrolled}
+                                className={clsx('inline-block rounded-sm font-semibold text-center py-3 px-6 ease-in-out transform transition duration-500 select-none w-full', isEnrolled ? 'bg-white text-black' : 'bg-brand text-white hover:bg-brand/90')}>
+                            {isEnrolled ? 'تم التسجيل' :
+                                state === "submitting" ? 'يتم التسجيل...':'سجل الان' }
+                            </button>
+                        )}
                         <img
                             alt=''
                             loading='eager'
