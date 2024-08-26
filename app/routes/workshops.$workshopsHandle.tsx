@@ -32,7 +32,7 @@ export async function loader(args: LoaderFunctionArgs) {
     const token = await jwtCookie.parse(args.request.headers.get("Cookie"));
     const role = await roleCookie.parse(args.request.headers.get("Cookie"));
     const workshop = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses/${workshopsHandle}`);
-    const enrollments = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/?courseId=${workshopsHandle}`, {
+    const enrollments = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/check-enrollment/?courseId=${workshopsHandle}`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,

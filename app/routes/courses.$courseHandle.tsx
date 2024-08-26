@@ -32,7 +32,7 @@ export async function loader(args: LoaderFunctionArgs) {
     const token = await jwtCookie.parse(args.request.headers.get("Cookie"));
     const role = await roleCookie.parse(args.request.headers.get("Cookie"));
     const course = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses/${courseHandle}`);
-    const enrollments = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/?courseId=${courseHandle}`, {
+    const enrollments = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/check-enrollment/?courseId=${courseHandle}`, {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,
@@ -51,7 +51,6 @@ export default function Courses() {
     const isEnrolled = enrollments.length > 0
     const actionData = useActionData();
     const navigation = useNavigation();
-
     const state: "idle" | "success" | "error" | "submitting" = navigation.state === "submitting"
         ? "submitting"
         : actionData?.name === 'Error'
