@@ -13,6 +13,7 @@ export const action: ActionFunction = async ({ request }) => {
     await new Promise((res) => setTimeout(res, 1000));
     const formData = await request.formData();
     const name = formData.get("name");
+    const pic = formData.get("pic");
     const username = formData.get("username");
     const password = formData.get("password");
     const userRole = formData.get("role");
@@ -22,16 +23,34 @@ export const action: ActionFunction = async ({ request }) => {
     const bio = formData.get("bio");
     const email = formData.get("email");
 
+    const apiFormData = new FormData();
+    apiFormData.append("name", name as string);
+    apiFormData.append("username", username as string);
+    apiFormData.append("password", password as string);
+    apiFormData.append("role", userRole as string);
+    apiFormData.append("email", email as string);
+
+    if (userRole === "Instructor"){
+        apiFormData.append("jobTitle", jobTitle as string);
+        apiFormData.append("linkedIn", linkedIn as string);
+        apiFormData.append("website", website as string);
+        apiFormData.append("bio", bio as string);
+    } else {
+        apiFormData.append("jobTitle", '.');
+        apiFormData.append("linkedIn", '.');
+        apiFormData.append("website", '.');
+        apiFormData.append("bio", '.');
+    }
+    if (pic && pic instanceof File) {
+        apiFormData.append("pic", pic);
+    }
     const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/users/sign-up`, {
-        method: "post",
-        body: JSON.stringify({ email, name, username, password, userRole, jobTitle, linkedIn, bio, website }),
-        headers: {
-            "Content-Type": "application/json; charset=utf-8",
-        },
+        method: "POST",
+        body: apiFormData,
     });
 
     if (!res.ok) {
-        return 'Error';
+        return await res.json();
     }
     const response = await res.json();
     const { token, data } = response;
@@ -50,6 +69,7 @@ export default function SignUp() {
     const navigation = useNavigation();
     const [selectedOption, setSelectedOption] = useState('Student');
 
+    console.log(actionData)
     const state: "idle" | "success" | "error" | "submitting" = navigation.state === "submitting"
         ? "submitting"
         : actionData?.name === 'Error'
@@ -88,7 +108,8 @@ export default function SignUp() {
                     </div>
                     <p className='font-light max-w-xs text-center'>قم بانشاء حساب حتى تتمكن من الاستمرار في استخدام الموقع .</p>
                 </div>
-                <div className='grid grid-cols-1 xl:grid-cols-2 gap-8 w-full p-4 xl:p-0 text-right max-w-lg xl:max-w-full'>
+                <div
+                    className='grid grid-cols-1 xl:grid-cols-2 gap-8 w-full p-4 xl:p-0 text-right max-w-lg xl:max-w-full'>
                     <div>
                         <label htmlFor="name"
                                className="block mb-2 text-sm font-medium">الاسم الكامل</label>
@@ -150,7 +171,17 @@ export default function SignUp() {
                             <option value="Company">شركة</option>
                         </select>
                     </div>
-
+                    <div>
+                        <label htmlFor="pic"
+                               className="block mb-2 text-sm font-medium">صورة الحساب</label>
+                        <input type="file" id="cover"
+                               name="pic"
+                               className="block w-full bg-formInput rounded-md border-0 shadow-sm text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
+                                file:bg-formInput file:border-0
+                                file:me-4
+                                file:py-3 file:px-4"
+                               placeholder="الغلاف" required/>
+                    </div>
                     {selectedOption === "Instructor" && <>
                         <div className='fadeIn'>
                             <label htmlFor="jobTitle"
@@ -185,12 +216,12 @@ export default function SignUp() {
                                 name="website"
                             />
                         </div>
-                        <div className='fadeIn xl:col-span-2'>
+                        <div className='fadeIn'>
                             <label htmlFor="bio"
                                    className="block mb-2 text-sm font-medium">السيرة الذاتية</label>
                             <textarea id="bio"
                                       name="bio"
-                                      className="block p-2.5 w-full h-32 text-sm bg-formInput rounded-md border-0"
+                                      className="block p-2.5 w-full h-10 text-sm bg-formInput rounded-md border-0"
                                       placeholder="اخبرنا عنك..."></textarea>
                         </div>
                     </>}

@@ -24,7 +24,7 @@ export const action: ActionFunction = async ({ request }) => {
     });
 
     if (!res.ok) {
-        return 'Error';
+        return await res.json();
     }
     const response = await res.json();
     const { token, data } = response;
