@@ -19,15 +19,15 @@ export function NewsSection({news}: {news: itemNews}) {
                         </div>
                     )}
                 </div>
-                <div className='relative w-full'>
+                <div className='relative w-full rounded-xl'>
                     <img
                         alt=''
                         src={import.meta.env.VITE_API_ENDPOINT + '/' + news.data[0].pic}
-                        className='object-cover overflow-hidden h-[253px] w-[380px] xl:h-[760px] xl:w-[580px]'
+                        className='object-cover overflow-hidden h-[253px] w-[380px] xl:h-[760px] xl:w-[580px] rounded-xl'
                         loading='lazy'
                     />
-                    <div aria-hidden="true" className="absolute inset-0 bg-dark/50"/>
-                    <div className='absolute bottom-0 text-white text-2xl xl:text-3xl text-right p-4 xl:mb-20 w-full'>
+                    <div aria-hidden="true" className="absolute inset-0 bg-dark/50 rounded-xl"/>
+                    <div className='absolute bottom-0 text-white text-2xl xl:text-3xl text-right p-4 xl:mb-20 w-full rounded-xl'>
                         <p>{news.data[0].title}</p>
                     </div>
                 </div>

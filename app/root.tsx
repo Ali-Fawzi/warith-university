@@ -1,9 +1,10 @@
 import {
+    isRouteErrorResponse,
     Links,
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration, useFetchers, useNavigation,
+    ScrollRestoration, useFetchers, useNavigation, useRouteError,
 } from "@remix-run/react";
 import styles from "./styles/app.css?url";
 import {PageLayout} from "~/components/ui/PageLayout";
@@ -12,6 +13,7 @@ import React, {useMemo} from "react";
 import NProgress from 'nprogress';
 import {jwtCookie, roleCookie} from "~/lib/cookies";
 import {useRouteLoaderData} from "react-router";
+import {NotFound} from "~/components/NotFound";
 
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles },
@@ -70,4 +72,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return <Outlet />;
+}
+
+export function ErrorBoundary() {
+    const routeError = useRouteError();
+    const isRouteError = isRouteErrorResponse(routeError);
+
+
+    return isRouteError ? (
+        <>
+            {routeError.status === 404 ? (
+                <NotFound />
+            ) : (
+                <p className='text-center text-rose-500 text-lg'>حدث خطأ</p>
+
+            )}
+        </>
+    ) : (
+        <p className='text-center text-rose-500 text-lg'>حدث خطأ</p>
+    )
 }

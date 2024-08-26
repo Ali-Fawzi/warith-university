@@ -1,6 +1,7 @@
 import {LoaderFunctionArgs, MetaFunction} from "@remix-run/node";
 import {HeroSection} from "~/components/HeroSection";
-import {useLoaderData} from "@remix-run/react";
+import {Form, useLoaderData} from "@remix-run/react";
+import {jwtCookie} from "~/lib/cookies";
 
 export const meta: MetaFunction = () => {
     return [
@@ -8,17 +9,27 @@ export const meta: MetaFunction = () => {
         { name: "الوصف", content: "اهلا بكم في جامعة وارث الانبياء في كربلاء المقدسة" },
     ];
 };
+
 export async function loader(args: LoaderFunctionArgs) {
     const {courseHandle} = args.params;
+    const token = await jwtCookie.parse(args.request.headers.get("Cookie"));
     const course = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses/${courseHandle}`);
+    const enrollments = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/${courseHandle}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
 
     return {
-        course: await course.json()
+        course: await course.json(),
+        enrollments: await enrollments.json()
     };
 }
 
 export default function Courses() {
-    const {course} = useLoaderData<typeof loader>()
+    const {course, enrollments} = useLoaderData<typeof loader>()
+    console.log(course)
     return (
         <>
             <section className='relative isolate overflow-hidden'>
@@ -38,7 +49,13 @@ export default function Courses() {
                             </ul>
                         </div>
                     </div>
-                    <div className='flex flex-col items-end justify-center gap-3'>
+                    <Form method='POST' className='flex flex-col items-end justify-center gap-3'>
+                        {/*<div className='text-rose-500 text-center mx-auto' id="error-message">*/}
+                        {/*    {state === "error" ? <div>*/}
+                        {/*        <p>تعذر التسجيل</p>*/}
+                        {/*        <p>يرجى اعادة المحاولة لاحقا</p>*/}
+                        {/*    </div> : ''}*/}
+                        {/*</div>*/}
                         <button
                             type='submit'
                             className='inline-block rounded-sm font-semibold text-center py-3 px-6 bg-brand text-white hover:bg-brand/90 ease-in-out transform transition duration-500 select-none w-full'>
@@ -62,7 +79,7 @@ export default function Courses() {
                         <div className='text-right'>
                             موقع الدورة: {course.place}
                         </div>
-                    </div>
+                    </Form>
                 </div>
             </section>
         </>
