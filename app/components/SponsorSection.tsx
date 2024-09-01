@@ -5,7 +5,7 @@ type sponsor = {
     pic: string;
     link: string;
 }
-export function SponserSection({sponsors} :{sponsors: sponsor[]}) {
+export function SponsorSection({sponsors} :{sponsors: sponsor[]}) {
     return (
       <div className='text-center bg-white flex flex-col justify-center items-center gap-4 p-4'>
           <p className='text-center border-brand border-b pb-2 text-2xl max-w-xs mx-auto'>المؤسسات الداعمة</p>

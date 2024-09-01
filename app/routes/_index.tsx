@@ -1,6 +1,6 @@
 import {MetaFunction} from "@remix-run/node";
 import {HeroSlider} from "~/components/HeroSlider";
-import {SponserSection} from "~/components/SponserSection";
+import {SponsorSection} from "~/components/SponsorSection";
 import {useLoaderData} from "@remix-run/react";
 import {WarithElevateSection} from "~/components/WarithElevateSection";
 import {InstructorsSection} from "~/components/InstructorsSection";
@@ -37,7 +37,7 @@ export default function Index() {
                 <HeroSlider slides={slides} />
             </section>
             <section className='relative -mt-10 mx-8 xl:mx-16'>
-                <SponserSection sponsors={sponsors} />
+                <SponsorSection sponsors={sponsors} />
             </section>
             <section className='mt-8'>
                 <CoursesSection course={courses}/>

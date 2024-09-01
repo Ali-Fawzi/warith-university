@@ -1,5 +1,5 @@
 import {MetaFunction} from "@remix-run/node";
-import {SponserSection} from "~/components/SponserSection";
+import {SponsorSection} from "~/components/SponsorSection";
 import {useLoaderData} from "@remix-run/react";
 import {WarithElevateSection} from "~/components/WarithElevateSection";
 import {InstructorsSection} from "~/components/InstructorsSection";
@@ -37,7 +37,7 @@ export default function About() {
                 <WarithElevateSection/>
             </section>
             <section className='mt-8'>
-                <SponserSection sponsors={sponsors}/>
+                <SponsorSection sponsors={sponsors}/>
             </section>
             <section className='my-8'>
                 <InstructorsSection/>
