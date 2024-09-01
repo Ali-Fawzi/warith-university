@@ -9,6 +9,9 @@
     --swiper-navigation-size: 24px !important;
     --swiper-navigation-sides-offset: 20px;
 }
+.black-swiper-nav {
+    --swiper-navigation-color: black !important;
+}
 
 @layer base {
     select {

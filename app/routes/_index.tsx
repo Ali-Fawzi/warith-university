@@ -17,12 +17,14 @@ export const meta: MetaFunction = () => {
 };
 export const loader = async () => {
     const sponsors = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/sponsers`);
+    const instructors = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/users/instructors`);
     const courses = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses`);
     const slides = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/slides`);
     const posts = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/posts?take=3`);
 
     return {
         sponsors: await sponsors.json(),
+        instructors: await instructors.json(),
         courses: await courses.json(),
         slides: await slides.json(),
         posts: await posts.json()
@@ -30,7 +32,7 @@ export const loader = async () => {
 };
 
 export default function Index() {
-    const {sponsors, slides, posts: news, courses} = useLoaderData<typeof loader>()
+    const {sponsors, slides, posts: news, courses, instructors} = useLoaderData<typeof loader>()
     return (
         <>
             <section className='relative isolate overflow-hidden'>
@@ -49,7 +51,7 @@ export default function Index() {
                 <WorkshopsSection workshops={courses}/>
             </section>
             <section className='mt-8 bg-white'>
-                <InstructorsSection />
+                <InstructorsSection instructors={instructors} />
             </section>
             <section className='mt-8'>
                 <NewsSection news={news} />

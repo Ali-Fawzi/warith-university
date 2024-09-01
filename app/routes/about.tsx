@@ -14,14 +14,16 @@ export const meta: MetaFunction = () => {
 };
 export const loader = async () => {
     const sponsors = await fetch(import.meta.env.VITE_API_ENDPOINT + "/sponsers");
+    const instructors = await fetch(import.meta.env.VITE_API_ENDPOINT + "/users/instructors");
 
     return {
         sponsors: await sponsors.json(),
+        instructors: await instructors.json(),
     };
 };
 
 export default function About() {
-    const {sponsors} = useLoaderData<typeof loader>()
+    const {sponsors, instructors} = useLoaderData<typeof loader>()
     return (
         <>
             <section className='relative isolate overflow-hidden'>
@@ -40,7 +42,7 @@ export default function About() {
                 <SponsorSection sponsors={sponsors}/>
             </section>
             <section className='my-8'>
-                <InstructorsSection/>
+                <InstructorsSection instructors={instructors}/>
             </section>
         </>
     );

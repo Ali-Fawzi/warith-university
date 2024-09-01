@@ -66,7 +66,7 @@ export const action: ActionFunction = async ({ request }) => {
 export async function loader({ request }) {
     const role = await roleCookie.parse(request.headers.get("Cookie"));
 
-    if(role && role === 'Instructor' || role === 'Root') {
+    if(role && role === 'Instructor' || role === 'Company') {
         return null;
     }
     return redirect('/');
@@ -226,6 +226,8 @@ export default function CourseCreate() {
                                   name="lectures"
                                   className="block p-2.5 w-full h-10 text-sm bg-formInput rounded-md border-0"
                                   placeholder="ادخل المحاضرات..."></textarea>
+                        <p className="mt-2 text-sm text-brand">ملاحظة: يرجى الضغط على  Enter  من اجل ادخال عنوان اكثر من محاضرة</p>
+
                     </div>
                     <div className='xl:col-span-2'>
                         <label htmlFor="description"

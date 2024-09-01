@@ -289,7 +289,7 @@ function Header({children, role, token}: { children: ReactNode; role?: string; t
                     <div className='hidden xl:flex flex-row items-end justify-between space-x-4'>
                         {role === 'Instructor' || role === 'Company' && (
                             <nav
-                                className='border-brand border-l first:border-none px-2 hover:text-black/70 ease-in-out transform transition duration-500'>
+                                className='border-brand border-l first:border-none pl-4 hover:text-black/70 ease-in-out transform transition duration-500'>
                                 <NavLink
                                     prefetch={'intent'}
                                     to={'course-create'}
@@ -302,7 +302,7 @@ function Header({children, role, token}: { children: ReactNode; role?: string; t
                         )}
                         {headerMenu.map((menuItem) =>
                             <nav key={menuItem.title}
-                                 className='border-brand border-l first:border-none px-2 hover:text-black/70 ease-in-out transform transition duration-500'>
+                                 className='border-brand border-l first:border-none pl-4 hover:text-black/70 ease-in-out transform transition duration-500'>
                                 <NavLink
                                     prefetch={'intent'}
                                     to={menuItem.link}

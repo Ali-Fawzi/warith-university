@@ -8,8 +8,8 @@ import 'swiper/css/navigation';
 import {Link} from "@remix-run/react";
 
 type slide = {
-    title: string;       // where this should be displayed ?
-    description: string; // where this should be displayed ?
+    title: string;
+    description: string;
     href: string;
     pic: string;
 }
