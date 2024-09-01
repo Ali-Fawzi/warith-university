@@ -20,12 +20,12 @@ type instructor = {
 }
 export function InstructorsSection ({instructors}: {instructors: instructor}) {
     return (
-        <div className='flex flex-col justify-center items-center gap-4 p-4'>
+        <div className='flex flex-col justify-center items-center gap-4 p-4 max-w-7xl mx-auto'>
             <p className='text-center text-2xl max-w-sm mx-auto font-bold'>Warith Elevate تعرف على مدربين </p>
             <Swiper
                 dir={'rtl'}
                 modules={[Navigation, A11y]}
-                spaceBetween={32}
+                spaceBetween={16}
                 breakpoints={{
                     320: {slidesPerView: 1.1},
                     1024: {slidesPerView: 2.3},
@@ -33,7 +33,7 @@ export function InstructorsSection ({instructors}: {instructors: instructor}) {
                     1536: {slidesPerView: 3},
                 }}
                 navigation
-                className='w-full px-4 black-swiper-nav'
+                className='w-full black-swiper-nav'
             >
                 {instructors.data.map((instructor: instructor) =>
                     <SwiperSlide key={instructor.id}>

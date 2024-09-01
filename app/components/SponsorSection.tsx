@@ -13,7 +13,7 @@ export function SponsorSection({sponsors} :{sponsors: sponsor[]}) {
           <p className='text-center border-brand border-b pb-2 text-2xl max-w-xs mx-auto'>المؤسسات الداعمة</p>
           <Swiper dir={'rtl'}
                   modules={[Navigation, A11y]}
-                  spaceBetween={32}
+                  spaceBetween={16}
                   breakpoints={{
                       320: {slidesPerView: 1},
                       480: {slidesPerView: 2.4},
@@ -23,7 +23,7 @@ export function SponsorSection({sponsors} :{sponsors: sponsor[]}) {
                       1536: {slidesPerView: 6},
                   }}
                   navigation
-                  className='w-full px-4 black-swiper-nav'
+                  className='w-full black-swiper-nav'
           >
               {sponsors.map((sponser: sponsor) =>
                   <SwiperSlide key={sponser.name}>
