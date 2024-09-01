@@ -25,12 +25,13 @@ export default function News() {
             <section className='relative isolate overflow-hidden'>
                 <HeroSection variant='complex' title={news.title} date={news.createdAt} heading={'الأخبار'} time={getDayName(news.createdAt)}/>
             </section>
-            <section className='my-8 max-w-7xl mx-auto'>
+            <section className='my-8 max-w-7xl mx-auto text-right'>
                 <div className='flex flex-col-reverse items-center justify-between gap-16 xl:flex-row-reverse p-4 mx-8 xl:mx-28'>
                     <div className='flex flex-col items-end justify-center gap-8 max-w-xl mb-auto'>
+                        <p className='text-2xl font-bold'>:{news.title}</p>
                         <p>{news.content}</p>
                     </div>
-                    <div className='flex flex-col items-end justify-center gap-4'>
+                    <div className='flex flex-col items-end justify-center gap-3 max-w-[400px]'>
                         <img
                             alt=''
                             loading='eager'

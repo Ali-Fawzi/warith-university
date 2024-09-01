@@ -77,7 +77,7 @@ export default function Courses() {
                             </ul>
                         </div>
                     </div>
-                    <Form method='POST' replace className='flex flex-col items-end justify-center gap-3'>
+                    <Form method='POST' replace className='flex flex-col items-end justify-center gap-3 max-w-[400px]'>
                         <div className='text-rose-500 text-center mx-auto' id="error-message">
                             {state === "error" ? <div>
                                 <p>تعذر التسجيل</p>
