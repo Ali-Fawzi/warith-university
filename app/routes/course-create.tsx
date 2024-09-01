@@ -61,12 +61,15 @@ export const action: ActionFunction = async ({ request }) => {
     const link = type === 'Warsha' ? 'workshops' : 'courses';
     const response = await res.json();
     const { id:courseId } = response;
+    if(status === 'Pending') {
+        return redirect(`/${link}`);
+    }
     return redirect(`/${link}/${courseId}`);
 };
 export async function loader({ request }) {
     const role = await roleCookie.parse(request.headers.get("Cookie"));
 
-    if(role && (role === 'Instructor' || role === 'Company')) {
+    if(role && (role === 'Instructor' || role === 'Root')) {
         return null;
     }
     return redirect('/');
