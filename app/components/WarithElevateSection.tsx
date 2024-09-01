@@ -39,7 +39,7 @@ export function WarithElevateSection() {
                                 <OnlineVideosIcon/>
                             </div>
                         </div>
-                        <Link to={'#'} className='mt-8 w-72'>
+                        <Link to={'/sign-in'} className='mt-8 w-72'>
                             <Button
                                 baseButtonClasses='inline-block rounded-md font-semibold text-center py-3 px-6'
                                 width='full'

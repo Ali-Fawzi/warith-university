@@ -253,7 +253,7 @@ function Header({children, role, token}: { children: ReactNode; role?: string; t
     } = useDrawer();
 
     return (
-        <>
+        <div className='sticky z-40 top-0 bg-background'>
             <MenuDrawer token={token} role={role} isOpen={isMenuOpen} onClose={closeMenu}/>
             <header
                 role="banner"
@@ -317,7 +317,7 @@ function Header({children, role, token}: { children: ReactNode; role?: string; t
                     <div>{children}</div>
                 </div>
             </header>
-        </>
+        </div>
     )
 }
 

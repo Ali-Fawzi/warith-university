@@ -16,7 +16,7 @@ export function NewsCard({itemNews, variant = 'section'}: {itemNews: itemNews, v
         <div className='max-w-5xl mx-auto'>
             <div className='flex flex-row justify-between bg-white rounded-xl shadow-sm'>
                 <div className={clsx('grow flex flex-col py-4 px-8 justify-between', variant === 'section' ? 'max-w-sm' : '')}>
-                    <p className='text-right font-semibold'>{itemNews.title}</p>
+                    <p className={clsx('text-right font-semibold line-clamp-1 min-h-20', variant === 'section' ? 'max-w-40' : '')}>{itemNews.title}</p>
                     <div className='flex flex-row items-center justify-between'>
                         <Link to={`${variant === 'section' ? '/news/' : ''}${itemNews.id}`}
                               className='flex flex-row items-start justify-start gap-3'>

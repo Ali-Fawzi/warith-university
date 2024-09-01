@@ -55,7 +55,7 @@ export function HeroSlider({slides} :{slides: slide[]}) {
                                     <p className='w-full'><span className='text-brand'>  وابتكر </span>مستقبلك </p>
                                 </div>
                             </div>
-                            <Link to={slide.href} >
+                            <Link to={'/sign-in'} >
                                 <Button
                                     baseButtonClasses='inline-block rounded-sm font-semibold text-center py-3 px-6'
                                     variant='secondary'
