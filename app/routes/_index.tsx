@@ -16,6 +16,8 @@ export const meta: MetaFunction = () => {
   ];
 };
 export const loader = async () => {
+    await new Promise((res) => setTimeout(res, 1000));
+
     const sponsors = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/sponsers`);
     const instructors = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/users/instructors`);
     const courses = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses`);
