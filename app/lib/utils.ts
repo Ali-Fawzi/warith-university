@@ -37,8 +37,7 @@ export async function refreshToken(request) {
     });
 
     if (!response.ok) {
-        console.log(await response.json())
-        throw new Response("Failed to refresh token", { status: response.status });
+        throw new Response(token, { status: response.status });
     }
 
     const { token: newToken } = await response.json();
