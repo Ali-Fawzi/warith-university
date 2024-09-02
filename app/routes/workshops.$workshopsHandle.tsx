@@ -3,6 +3,7 @@ import {HeroSection} from "~/components/HeroSection";
 import {Form, Link, useActionData, useLoaderData, useNavigation} from "@remix-run/react";
 import {jwtCookie, roleCookie} from "~/lib/cookies";
 import clsx from "clsx";
+import {refreshToken} from "~/lib/utils";
 
 export const meta: MetaFunction = () => {
     return [
@@ -23,6 +24,22 @@ export const action: ActionFunction = async (args: LoaderFunctionArgs) => {
             Authorization: `Bearer ${token}`,
         },
     });
+    if (res.status === 401) {
+        const refreshResult = await refreshToken(args.request);
+        const newToken = await jwtCookie.parse(refreshResult.headers["Set-Cookie"]);
+
+        const retryResponse = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments`, {
+            method: "post",
+            body: JSON.stringify({ courseId:workshopsHandle }),
+            headers: {
+                "Content-Type": "application/json; charset=utf-8",
+                Authorization: `Bearer ${newToken}`,
+            },
+        });
+        if (!retryResponse.ok) {
+            return 'Error';
+        }
+    }
 
     return res.json();
 
@@ -38,7 +55,25 @@ export async function loader(args: LoaderFunctionArgs) {
             Authorization: `Bearer ${token}`,
         },
     });
+    if (enrollments.status === 401 && role === 'Student') {
+        const refreshResult = await refreshToken(args.request);
+        const newToken = await jwtCookie.parse(refreshResult.headers["Set-Cookie"]);
 
+        const retryResponse = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/check-enrollment/?courseId=${workshopsHandle}`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${newToken}`,
+            },
+        });
+        if (!retryResponse.ok) {
+            return 'Error';
+        }
+        return {
+            workshop: await workshop.json(),
+            enrollments: await retryResponse.json(),
+            role
+        };
+    }
     return {
         workshop: await workshop.json(),
         enrollments: await enrollments.json(),

@@ -3,6 +3,7 @@ import {HeroSection} from "~/components/HeroSection";
 import {Form, useActionData, useNavigation} from "@remix-run/react";
 import {useEffect, useRef} from "react";
 import {jwtCookie, roleCookie} from "~/lib/cookies";
+import {refreshToken} from "~/lib/utils";
 export const meta: MetaFunction = () => {
     return [
         { title: "جامعة وارث الانبياء" },
@@ -47,6 +48,7 @@ export const action: ActionFunction = async ({ request }) => {
     if (cover && cover instanceof File) {
         apiFormData.append("cover", cover);
     }
+    const link = type === 'Warsha' ? 'workshops' : 'courses';
 
     const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses`, {
         method: "POST",
@@ -56,15 +58,25 @@ export const action: ActionFunction = async ({ request }) => {
         },
     });
     if (!res.ok) {
-        return 'Error';
+        if (res.status === 401) {
+            const refreshResult = await refreshToken(request);
+            const newToken = await jwtCookie.parse(refreshResult.headers["Set-Cookie"]);
+
+            const retryResponse = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses`, {
+                method: "POST",
+                body: apiFormData,
+                headers: {
+                    Authorization: `Bearer ${newToken}`,
+                },
+            });
+            if (!retryResponse.ok) {
+                return 'Error';
+            }
+        } else {
+            return 'Error';
+        }
     }
-    const link = type === 'Warsha' ? 'workshops' : 'courses';
-    const response = await res.json();
-    const { id:courseId } = response;
-    if(status === 'Pending') {
-        return redirect(`/${link}`);
-    }
-    return redirect(`/${link}/${courseId}`);
+    return redirect(`/${link}`);
 };
 export async function loader({ request }) {
     const role = await roleCookie.parse(request.headers.get("Cookie"));
