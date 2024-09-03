@@ -20,7 +20,8 @@ export const loader = async () => {
 
     const sponsors = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/sponsers`);
     const instructors = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/users/instructors`);
-    const courses = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses`);
+    const workshops = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses?type=Warsha&take=6`);
+    const courses = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses?type=Tadreab&take=6`);
     const slides = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/slides`);
     const posts = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/posts?take=3`);
 
@@ -29,12 +30,13 @@ export const loader = async () => {
         instructors: await instructors.json(),
         courses: await courses.json(),
         slides: await slides.json(),
-        posts: await posts.json()
+        posts: await posts.json(),
+        workshops: await workshops.json(),
     };
 };
 
 export default function Index() {
-    const {sponsors, slides, posts: news, courses, instructors} = useLoaderData<typeof loader>()
+    const {sponsors, slides, posts: news, courses, instructors, workshops} = useLoaderData<typeof loader>()
     return (
         <>
             <section className='relative isolate overflow-hidden'>
@@ -50,7 +52,7 @@ export default function Index() {
                 <WarithElevateSection />
             </section>
             <section className='mt-8'>
-                <WorkshopsSection workshops={courses}/>
+                <WorkshopsSection workshops={workshops}/>
             </section>
             <section className='mt-8 bg-white'>
                 <InstructorsSection instructors={instructors} />
