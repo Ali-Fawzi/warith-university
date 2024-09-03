@@ -2,7 +2,7 @@ import {ActionFunction, MetaFunction, redirect} from "@remix-run/node";
 import {HeroSection} from "~/components/HeroSection";
 import {Form, useActionData, useNavigation} from "@remix-run/react";
 import {useEffect, useRef} from "react";
-import {jwtCookie, roleCookie} from "~/lib/cookies";
+import {jwtCookie, roleCookie, statusCookie} from "~/lib/cookies";
 import {refreshToken} from "~/lib/utils";
 export const meta: MetaFunction = () => {
     return [
@@ -80,8 +80,9 @@ export const action: ActionFunction = async ({ request }) => {
 };
 export async function loader({ request }) {
     const role = await roleCookie.parse(request.headers.get("Cookie"));
+    const status = await statusCookie.parse(request.headers.get("Cookie"));
 
-    if(role && (role === 'Instructor' || role === 'Company')) {
+    if(role && (role === 'Instructor' || role === 'Company') && status === 'Active') {
         return null;
     }
     return redirect('/');

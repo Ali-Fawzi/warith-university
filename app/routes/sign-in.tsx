@@ -1,7 +1,7 @@
 import {ActionFunction, MetaFunction, redirect} from "@remix-run/node";
 import {Form, useActionData, useNavigation} from "@remix-run/react";
 import {useEffect, useRef} from "react";
-import {jwtCookie, roleCookie} from "~/lib/cookies";
+import {jwtCookie, roleCookie, statusCookie} from "~/lib/cookies";
 
 export const meta: MetaFunction = () => {
     return [
@@ -28,12 +28,13 @@ export const action: ActionFunction = async ({ request }) => {
     }
     const response = await res.json();
     const { token, data } = response;
-    const { role } = data;
+    const { role, status } = data;
 
     return redirect("/", {
         headers: [
             ["Set-Cookie", await jwtCookie.serialize(token)],
             ["Set-Cookie", await roleCookie.serialize(role)],
+            ["Set-Cookie", await statusCookie.serialize(status)],
         ],
     });
 };
@@ -80,12 +81,12 @@ export default function SignIn() {
                 <div className='flex flex-col items-center justify-center gap-8 w-full max-w-xl p-4 xl:p-0 text-right'>
                     <div className='w-full'>
                         <label htmlFor="username"
-                               className="block mb-2 text-sm font-medium">اسم المستخدم</label>
+                               className="block mb-2 text-sm font-medium">رقم الهاتف</label>
                         <input
                             type="text"
                             id="username"
                             className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
-                            placeholder="اسم المستخدم"
+                            placeholder="رقم الهاتف"
                             required
                             name="username"
                             aria-describedby="error-message"

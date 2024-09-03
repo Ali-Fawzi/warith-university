@@ -1,7 +1,7 @@
 import {ActionFunction, MetaFunction, redirect} from "@remix-run/node";
 import {Form, useActionData, useNavigation} from "@remix-run/react";
 import {useEffect, useRef, useState} from "react";
-import {jwtCookie, roleCookie} from "~/lib/cookies";
+import {jwtCookie, roleCookie, statusCookie} from "~/lib/cookies";
 
 export const meta: MetaFunction = () => {
     return [
@@ -35,11 +35,6 @@ export const action: ActionFunction = async ({request}) => {
         apiFormData.append("linkedIn", linkedIn as string);
         apiFormData.append("website", website as string);
         apiFormData.append("bio", bio as string);
-    } else {
-        apiFormData.append("jobTitle", '.');
-        apiFormData.append("linkedIn", '.');
-        apiFormData.append("website", '.');
-        apiFormData.append("bio", '.');
     }
     if (pic && pic instanceof File) {
         apiFormData.append("pic", pic);
@@ -50,26 +45,28 @@ export const action: ActionFunction = async ({request}) => {
     });
 
     if (!res.ok) {
-        return 'Error';
+        return await res.json();
     }
     const response = await res.json();
     const {token, user} = response;
-    const {role} = user;
+    const {role, status} = user;
 
     return redirect("/", {
         headers: [
             ["Set-Cookie", await jwtCookie.serialize(token)],
             ["Set-Cookie", await roleCookie.serialize(role)],
+            ["Set-Cookie", await statusCookie.serialize(status)],
         ],
     });
 };
 export default function SignUp() {
     const actionData = useActionData();
     const navigation = useNavigation();
+    console.log(actionData?.message)
     const [selectedOption, setSelectedOption] = useState('');
     const state: "idle" | "success" | "error" | "submitting" = navigation.state === "submitting"
         ? "submitting"
-        : actionData === 'Error'
+        : actionData?.message
             ? "error"
             : "idle";
     const handleSelectChange = (event) => {
@@ -146,16 +143,19 @@ export default function SignUp() {
                                    className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
                                    placeholder="الاسم الكامل"
                                    required
+                                   minLength={3}
+                                   maxLength={50}
                                    aria-describedby="error-message"
                                    ref={inputRef}
                             />
-                        </div>)}
+                        </div>
+                        )}
                     {selectedOption && (
                         <>
                             <div className='fadeIn'>
                                 <label htmlFor="email"
                                        className="block mb-2 text-sm font-medium">بريدك الالكتروني</label>
-                                <input type="text"
+                                <input type="email"
                                        id="email"
                                        name="email"
                                        className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
@@ -167,8 +167,10 @@ export default function SignUp() {
                                 <input
                                     type="text"
                                     id="username"
+                                    minLength={10}
+                                    maxLength={14}
                                     className="block p-2.5 w-full text-sm bg-formInput rounded-md border-0"
-                                    placeholder="رقم الهاتف"
+                                    placeholder="الرقم"
                                     required
                                     name="username"
                                 />
@@ -183,6 +185,8 @@ export default function SignUp() {
                                     placeholder="كلمة المرور"
                                     required
                                     name="password"
+                                    minLength={8}
+                                    maxLength={36}
                                 />
                             </div>
                             <div className='fadeIn'>
@@ -195,7 +199,7 @@ export default function SignUp() {
                                 file:me-4
                                 file:py-3 file:px-4"
                                        placeholder="صورة الحساب"
-                                       required/>
+                                />
                             </div>
                         </>
                     )}
@@ -247,8 +251,9 @@ export default function SignUp() {
                 <div className='flex flex-col items-center justify-center gap-4 relative'>
                     <div className='text-rose-500 text-center' id="error-message">
                         {state === "error" ? <div>
-                            <p>حدث خطا</p>
-                            <p>يرجى التاكد من صحة المعلومات و اعادة المحاولة</p>
+                            <p>حدث خطأ يرجى التاكد من صحة المعلومات و اعادة</p>
+                            <p>{actionData?.message}</p>
+
                         </div> : ''}
                     </div>
                     <button

@@ -1,7 +1,7 @@
 import {ActionFunction, LoaderFunctionArgs, MetaFunction} from "@remix-run/node";
 import {HeroSection} from "~/components/HeroSection";
 import {Form, Link, useActionData, useLoaderData, useNavigation} from "@remix-run/react";
-import {jwtCookie, roleCookie} from "~/lib/cookies";
+import {jwtCookie, roleCookie, statusCookie} from "~/lib/cookies";
 import clsx from "clsx";
 import {refreshToken} from "~/lib/utils";
 
@@ -48,6 +48,7 @@ export async function loader(args: LoaderFunctionArgs) {
     const {courseHandle} = args.params;
     const token = await jwtCookie.parse(args.request.headers.get("Cookie"));
     const role = await roleCookie.parse(args.request.headers.get("Cookie"));
+    const status = await statusCookie.parse(args.request.headers.get("Cookie"));
     const course = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/courses/${courseHandle}`);
     const enrollments = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/enrollments/check-enrollment/?courseId=${courseHandle}`, {
         method: "GET",
@@ -72,19 +73,21 @@ export async function loader(args: LoaderFunctionArgs) {
         return {
             course: await course.json(),
             enrollments: await retryResponse.json(),
-            role
+            role,
+            status
         };
     }
 
     return {
         course: await course.json(),
         enrollments: await enrollments.json(),
-        role
+        role,
+        status
     };
 }
 
 export default function Courses() {
-    const {course, enrollments, role} = useLoaderData<typeof loader>()
+    const {course, enrollments, role, status} = useLoaderData<typeof loader>()
     const isEnrolled = enrollments.length > 0
     const actionData = useActionData();
     const navigation = useNavigation();
@@ -132,10 +135,10 @@ export default function Courses() {
                         {role === 'Student' && (
                             <button
                                 type='submit'
-                                disabled={isEnrolled}
+                                disabled={isEnrolled || status !=='Active'}
                                 className={clsx('inline-block rounded-sm font-semibold text-center py-3 px-6 ease-in-out transform transition duration-500 select-none w-full', isEnrolled ? 'bg-white text-black' : 'bg-brand text-white hover:bg-brand/90')}>
                             {isEnrolled ? 'تم التسجيل' :
-                                state === "submitting" ? 'يتم التسجيل...':'سجل الان' }
+                                state === "submitting" ? 'يتم التسجيل...': status !=='Active' ? 'يرجى تفعيل الحساب':'سجل الان' }
                             </button>
                         )}
                         <img

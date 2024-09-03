@@ -102,7 +102,7 @@ const footerNavigation = {
         },
     ],
 }
-export function PageLayout({children, role, token}: {children: ReactNode; role?: string; token?: string}) {
+export function PageLayout({children, role, token, status}: {children: ReactNode; role?: string; token?: string; status?: string}) {
     return (
         <>
             <div className="flex flex-col min-h-screen bg-background font-almarai font-normal">
@@ -112,7 +112,7 @@ export function PageLayout({children, role, token}: {children: ReactNode; role?:
                     </a>
                 </div>
                 <div className='bg-dark p-2 text-left text-white'>الموقع الرسمي للجامعة</div>
-                <Header role={role} token={token}>
+                <Header role={role} token={token} status={status}>
                     <Link to={'/'} prefetch={'intent'}>
                         <div className='flex flex-row items-center justify-center space-x-4'>
                             <div className='flex flex-col items-end justify-center text-sm xl:text-base text-right'>
@@ -154,12 +154,14 @@ function MenuDrawer({
     isOpen,
     onClose,
     token,
-    role
+    role,
+    status
 }: {
     isOpen: boolean;
     onClose: () => void;
     token ?: string;
     role ?: string;
+    status ?: string;
 }) {
     return (
         <Drawer open={isOpen} onClose={onClose} openFrom="right">
@@ -181,7 +183,7 @@ function MenuDrawer({
                             </NavLink>
                         </nav>
                     )}
-                    {(role === 'Instructor' || role === 'Company') && (
+                    {(role === 'Instructor' || role === 'Company') && status ==='Active' && (
                         <nav className='w-full border-brand border-b text-right py-4'>
                             <NavLink
                                 onClick={onClose}
@@ -245,7 +247,7 @@ function MenuDrawer({
     );
 }
 
-function Header({children, role, token}: { children: ReactNode; role?: string; token?: string }) {
+function Header({children, role, token, status}: { children: ReactNode; role?: string; token?: string; status?: string }) {
     const {
         isOpen: isMenuOpen,
         openDrawer: openMenu,
@@ -254,7 +256,7 @@ function Header({children, role, token}: { children: ReactNode; role?: string; t
 
     return (
         <div className='sticky z-40 top-0 bg-background'>
-            <MenuDrawer token={token} role={role} isOpen={isMenuOpen} onClose={closeMenu}/>
+            <MenuDrawer token={token} role={role} status={status} isOpen={isMenuOpen} onClose={closeMenu}/>
             <header
                 role="banner"
                 className='flex flex-row items-center justify-between space-x-8 mb-4 mx-4 xl:mx-16'
@@ -287,7 +289,7 @@ function Header({children, role, token}: { children: ReactNode; role?: string; t
                 )}
                 <div className='grow flex flex-row items-center justify-end space-x-8'>
                     <div className='hidden xl:flex flex-row items-end justify-between space-x-4'>
-                        {(role === 'Instructor' || role === 'Company') && (
+                        {(role === 'Instructor' || role === 'Company') && status === 'Active' && (
                             <nav
                                 className='border-brand border-l first:border-none pl-4 hover:text-black/70 ease-in-out transform transition duration-500'>
                                 <NavLink
