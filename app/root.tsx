@@ -18,6 +18,7 @@ import {NotFound} from "~/components/NotFound";
 export const links: LinksFunction = () => [
     { rel: "stylesheet", href: styles },
 ];
+
 export const loader = async ({ request }) => {
     const role = await roleCookie.parse(request.headers.get("Cookie"));
     const token = await jwtCookie.parse(request.headers.get("Cookie"));
