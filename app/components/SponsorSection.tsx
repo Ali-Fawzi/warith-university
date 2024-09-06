@@ -1,6 +1,6 @@
 import {Link} from "@remix-run/react";
 import {Swiper, SwiperSlide} from "swiper/react";
-import {A11y, Navigation} from "swiper/modules";
+import {A11y, Navigation, Autoplay} from "swiper/modules";
 
 type sponsor = {
     name: string;
@@ -12,7 +12,12 @@ export function SponsorSection({sponsors} :{sponsors: sponsor[]}) {
       <div className='text-center bg-white flex flex-col justify-center items-center gap-4 p-4'>
           <p className='text-center border-brand border-b pb-2 text-2xl max-w-xs mx-auto'>المؤسسات الداعمة</p>
           <Swiper dir={'rtl'}
-                  modules={[Navigation, A11y]}
+                autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: true,
+                    stopOnLastSlide: false,
+                }}
+                  modules={[Navigation, A11y, Autoplay]}
                   spaceBetween={16}
                   breakpoints={{
                       320: {slidesPerView: 1},

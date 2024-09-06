@@ -1,10 +1,11 @@
 import {Swiper, SwiperSlide} from "swiper/react";
-import {A11y, Navigation} from "swiper/modules";
+import {A11y, Navigation, Autoplay} from "swiper/modules";
 import Logo from "~/asstes/icons/Logo2.svg";
 import Logo2 from "~/asstes/icons/Logo3.svg";
 import {Button} from "~/components/ui/Button";
 import 'swiper/css';
 import 'swiper/css/navigation';
+
 import {Link} from "@remix-run/react";
 
 type slide = {
@@ -16,8 +17,13 @@ type slide = {
 export function HeroSlider({slides} :{slides: slide[]}) {
     return (
         <Swiper
+            autoplay={{
+                delay: 5000,
+                disableOnInteraction: true,
+                stopOnLastSlide: false,
+            }}
             dir={'rtl'}
-            modules={[Navigation, A11y]}
+            modules={[Navigation, A11y, Autoplay]}
             spaceBetween={50}
             slidesPerView={1}
             navigation
