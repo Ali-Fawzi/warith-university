@@ -251,9 +251,8 @@ export default function SignUp() {
                 <div className='flex flex-col items-center justify-center gap-4 relative'>
                     <div className='text-rose-500 text-center' id="error-message">
                         {state === "error" ? <div>
-                            <p>حدث خطأ يرجى التاكد من صحة المعلومات و اعادة</p>
-                            <p>{actionData?.message}</p>
-
+                            <p>حدث خطا</p>
+                            <p>يرجى التاكد من صحة المعلومات و اعادة المحاولة</p>
                         </div> : ''}
                     </div>
                     <button
