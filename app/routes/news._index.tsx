@@ -15,7 +15,7 @@ export const loader = async ({ request }) => {
     const skip = Number(url.searchParams.get('skip')) || 0;
     const take = Number(url.searchParams.get('take')) || 4;
 
-    const response = await fetch(`${process.env.VITE_API_ENDPOINT}/posts?skip=${skip}&take=${take}`);
+    const response = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/posts?skip=${skip}&take=${take}`);
     const posts = await response.json();
 
     return json({ posts, skip, take });
