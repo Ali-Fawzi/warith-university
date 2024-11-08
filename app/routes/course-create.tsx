@@ -82,7 +82,7 @@ export async function loader({ request }) {
     const role = await roleCookie.parse(request.headers.get("Cookie"));
     const status = await statusCookie.parse(request.headers.get("Cookie"));
 
-    if(role && (role === 'Instructor' || role === 'Company') && status === 'Active') {
+    if(role && (role !== 'Student') && status === 'Active') {
         return null;
     }
     return redirect('/');
